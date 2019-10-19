@@ -1,5 +1,5 @@
-# serview
-Aplicativo Serview em desenvolvimento.
+# Serview
+Aplicativo que busca facilitar o encontro do fornecedor de serviços para o cliente final, em desenvolvimento.
 <Pre>
 Links que podem ajudar no desenvolvimento do aplicativo:
     // https://www.youtube.com/watch?v=pTJJsmejUOQ
