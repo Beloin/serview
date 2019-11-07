@@ -12,7 +12,7 @@ class _HomePageState extends State<HomePage> {
         appBar: AppBar(
             title: Text(
       "Serview",
-      style: TextStyle(fontSize: 20),
+      style: TextStyle(fontSize: 20, color: Colors.amber),
     )));
   }
 }
