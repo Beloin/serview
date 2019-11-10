@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class SignPage extends StatefulWidget {
   @override
@@ -8,6 +9,7 @@ class SignPage extends StatefulWidget {
 class _SignPageState extends State<SignPage> {
   String _email;
   String _password;
+  double _hPadd = 20.0;
 
   @override
   Widget build(BuildContext context) {
@@ -35,42 +37,57 @@ class _SignPageState extends State<SignPage> {
               //Primeira Tab
               Tab(
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
-                    Padding(
-                      padding: EdgeInsets.symmetric(
-                          vertical: 10.0, horizontal: 20.0),
-                      child: Text(
-                        "Email:",
-                        style: TextStyle(color: Colors.blue, fontSize: 25.0),
-                        textAlign: TextAlign.start,
-                      ),
+                    //Divisor apenas para aumentar o espaço entre o TabBar
+                    Divider(color: Colors.white, height: 80.0,),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: <Widget>[
+                        Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: _hPadd, vertical: 5.0),
+                          child: Text(
+                            "Email:",
+                            style: TextStyle(
+                                color: Colors.blueGrey, fontSize: 20.0),
+                          ),
+                        ),
+                      ],
                     ),
                     Padding(
                       padding: EdgeInsets.symmetric(
-                          vertical: 10.0, horizontal: 20.0),
+                          vertical: 5.0, horizontal: _hPadd),
                       child: _buildFieldText(
                           onSubmitted: _email,
                           label: "Digite Aqui Seu Email",
-                          colorText: Colors.black),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(
-                          vertical: 10.0, horizontal: 20.0),
-                      child: Text(
-                        "Senha:",
-                        style: TextStyle(color: Colors.blue, fontSize: 25.0),
-                        textAlign: TextAlign.left,
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(
-                          vertical: 10.0, horizontal: 20.0),
-                      child: _buildFieldText(
-                          onSubmitted: _password,
-                          label: "Digite Aqui Sua Senha",
                           colorText: Colors.black,
-                          obscureText: true),
+                          keyboardType: TextInputType.emailAddress),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: <Widget>[
+                        Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: _hPadd, vertical: 5.0),
+                          child: Text(
+                            "Senha:",
+                            style: TextStyle(
+                                color: Colors.blueGrey, fontSize: 20.0),
+                            textAlign: TextAlign.left,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                          vertical: 5.0, horizontal: _hPadd),
+                      child: _buildFieldText(
+                        onSubmitted: _password,
+                        label: "Digite Aqui Sua Senha",
+                        colorText: Colors.black,
+                        obscureText: true,
+                      ),
                     ),
                   ],
                 ),
@@ -89,13 +106,16 @@ class _SignPageState extends State<SignPage> {
       {label = "TextField",
       colorText = Colors.blue,
       fontSize = 15.0,
-      onSubmitted, obscureText = false}) {
+      onSubmitted,
+      obscureText = false,
+      keyboardType = TextInputType.text}) {
     return TextField(
       obscureText: obscureText,
+      keyboardType: keyboardType,
       decoration: InputDecoration(
           border: OutlineInputBorder(),
           labelText: label,
-          labelStyle: TextStyle(color: Colors.blue),
+          labelStyle: TextStyle(color: Colors.blueGrey),
           enabledBorder:
               OutlineInputBorder(borderSide: BorderSide(color: Colors.blue))),
       onSubmitted: (text) {
@@ -103,7 +123,6 @@ class _SignPageState extends State<SignPage> {
         print(onSubmitted);
       },
       style: TextStyle(fontSize: fontSize, color: colorText),
-      textAlign: TextAlign.left,
     );
   }
 }
