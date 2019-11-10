@@ -24,7 +24,7 @@ class _SignPageState extends State<SignPage> {
             bottom: TabBar(
               tabs: <Widget>[
                 Tab(
-                  text: "Sign In",
+                  text: "Login",
                 ),
                 Tab(
                   text: "Sign Up",
@@ -34,13 +34,12 @@ class _SignPageState extends State<SignPage> {
           ),
           body: TabBarView(
             children: <Widget>[
-              //Primeira Tab
+              //Primeira Tab "Login"
               Tab(
+                  child: SingleChildScrollView(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
-                    //Divisor apenas para aumentar o espaço entre o TabBar
-                    Divider(color: Colors.white, height: 80.0,),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: <Widget>[
@@ -64,6 +63,7 @@ class _SignPageState extends State<SignPage> {
                           colorText: Colors.black,
                           keyboardType: TextInputType.emailAddress),
                     ),
+                    Divider(color: Colors.white, height: 15.0),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: <Widget>[
@@ -89,18 +89,36 @@ class _SignPageState extends State<SignPage> {
                         obscureText: true,
                       ),
                     ),
+                    Padding(
+                        padding: EdgeInsets.symmetric(vertical: 10.0),
+                        child: _floatAction),
+                    Divider(color: Colors.white, height: 50.0),
                   ],
                 ),
-              ),
-              // Segunda Tab
+              )),
+              // Segunda Tab "Sign Up"
               Tab(
                   child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[]))
+                      children: <Widget>[
+                    SingleChildScrollView(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: <Widget>[],
+                      ),
+                    )
+                  ]))
             ],
           ),
         ));
   }
+
+  Widget _floatAction = FloatingActionButton.extended(
+    backgroundColor: Colors.blueGrey,
+    onPressed: () {},
+    label: Text("Enviar Dados"),
+    icon: Icon(Icons.send),
+  );
 
   Widget _buildFieldText(
       {label = "TextField",
@@ -113,11 +131,14 @@ class _SignPageState extends State<SignPage> {
       obscureText: obscureText,
       keyboardType: keyboardType,
       decoration: InputDecoration(
-          border: OutlineInputBorder(),
+          border: OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.blue),
+              borderRadius: BorderRadius.circular(25.0)),
           labelText: label,
           labelStyle: TextStyle(color: Colors.blueGrey),
-          enabledBorder:
-              OutlineInputBorder(borderSide: BorderSide(color: Colors.blue))),
+          enabledBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.blue),
+              borderRadius: BorderRadius.circular(25.0))),
       onSubmitted: (text) {
         onSubmitted = text;
         print(onSubmitted);
