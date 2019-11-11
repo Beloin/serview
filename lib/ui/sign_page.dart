@@ -10,7 +10,7 @@ class _SignPageState extends State<SignPage> {
   //Teste para Login:
   String _email;
   String _password;
-  
+
   //Teste para Sign Up:
   String _name;
   String _emailSign;
@@ -109,6 +109,26 @@ class _SignPageState extends State<SignPage> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
+                    GestureDetector(
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(vertical: 5.0),
+                        child: Container(
+                            width: 150.0,
+                            height: 150.0,
+                            decoration: BoxDecoration(
+                                border:
+                                    Border.all(color: Colors.blue, width: 3.0),
+                                shape: BoxShape.circle,
+                                image: DecorationImage(
+                                    fit: BoxFit.fitHeight,
+                                    image:AssetImage("assets/profile_pic.png"))),
+                            child: Container(
+                              color: Colors.white38,
+                              child: Icon(Icons.add_a_photo),
+                            )),
+                      ),
+                      onTap: () {},
+                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: <Widget>[
