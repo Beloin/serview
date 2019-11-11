@@ -7,8 +7,16 @@ class SignPage extends StatefulWidget {
 }
 
 class _SignPageState extends State<SignPage> {
+  //Teste para Login:
   String _email;
   String _password;
+  
+  //Teste para Sign Up:
+  String _name;
+  String _emailSign;
+  String _passwordSign;
+  String _passwordSign2;
+
   double _hPadd = 20.0;
 
   @override
@@ -74,7 +82,6 @@ class _SignPageState extends State<SignPage> {
                             "Senha:",
                             style: TextStyle(
                                 color: Colors.blueGrey, fontSize: 20.0),
-                            textAlign: TextAlign.left,
                           ),
                         ),
                       ],
@@ -91,34 +98,126 @@ class _SignPageState extends State<SignPage> {
                     ),
                     Padding(
                         padding: EdgeInsets.symmetric(vertical: 10.0),
-                        child: _floatAction),
+                        child: _floatSent(label: "Login")),
                     Divider(color: Colors.white, height: 50.0),
                   ],
                 ),
               )),
               // Segunda Tab "Sign Up"
               Tab(
-                  child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                  child: SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: <Widget>[
-                    SingleChildScrollView(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: <Widget>[],
+                        Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: _hPadd, vertical: 5.0),
+                          child: Text(
+                            "Nome Completo",
+                            style: TextStyle(
+                                color: Colors.blueGrey, fontSize: 20.0),
+                          ),
+                        )
+                      ],
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: _hPadd, vertical: 5.0),
+                      child: _buildFieldText(
+                        colorText: Colors.black,
+                        onSubmitted: _name,
+                        label: "Digite Aqui Seu Nome Completo",
                       ),
-                    )
-                  ]))
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: <Widget>[
+                        Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: _hPadd, vertical: 5.0),
+                            child: Text(
+                              "Seu Email",
+                              style: TextStyle(
+                                  color: Colors.blueGrey, fontSize: 20.0),
+                            ))
+                      ],
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: _hPadd, vertical: 5.0),
+                      child: _buildFieldText(
+                        colorText: Colors.black,
+                        keyboardType: TextInputType.emailAddress,
+                        label: "Escreva Aqui Seu Email",
+                        onSubmitted: _emailSign,
+                      ),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: <Widget>[
+                        Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: _hPadd, vertical: 5.0),
+                            child: Text(
+                              "Sua Senha",
+                              style: TextStyle(
+                                  color: Colors.blueGrey, fontSize: 20.0),
+                            ))
+                      ],
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: _hPadd, vertical: 5.0),
+                      child: _buildFieldText(
+                          colorText: Colors.black,
+                          obscureText: true,
+                          label: "Escreva Aqui Sua Senha",
+                          onSubmitted: _passwordSign),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: <Widget>[
+                        Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: _hPadd, vertical: 5.0),
+                            child: Text(
+                              "Sua Senha Novamente",
+                              style: TextStyle(
+                                  color: Colors.blueGrey, fontSize: 20.0),
+                            ))
+                      ],
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: _hPadd, vertical: 5.0),
+                      child: _buildFieldText(
+                          colorText: Colors.black,
+                          obscureText: true,
+                          label: "Escreva Aqui Sua Senha Novamente",
+                          onSubmitted: _passwordSign2),
+                    ),
+                    Padding(
+                        padding: EdgeInsets.symmetric(vertical: 10.0),
+                        child: _floatSent(label: "Sign Up")),
+                    Divider(color: Colors.white, height: 50.0),
+                  ],
+                ),
+              ))
             ],
           ),
         ));
   }
 
-  Widget _floatAction = FloatingActionButton.extended(
-    backgroundColor: Colors.blueGrey,
-    onPressed: () {},
-    label: Text("Enviar Dados"),
-    icon: Icon(Icons.send),
-  );
+  Widget _floatSent({label = "Label"}) {
+    return FloatingActionButton.extended(
+        backgroundColor: Colors.blueGrey,
+        onPressed: () {},
+        label: Text(label),
+        icon: Icon(Icons.send));
+  }
 
   Widget _buildFieldText(
       {label = "TextField",
