@@ -7,7 +7,7 @@ class User {
   String _name;
   //img _fotoPerfil;
   bool _fornecedor = false;
-  //Curriculo _curriculo;
+  Curriculum _curriculum;
   double _classification = 3;
 
   User(name, email, password){
@@ -25,12 +25,13 @@ class User {
 }
 
 class Curriculum {
-  //Profession _prof;
+  Profession _prof;
   String _description;
   //List<img> _imgs;
-  Curriculum(description, /*prof,*/){
+  
+  Curriculum(description, prof){
     _description = description;
-    //_prof = prof;
+    _prof = prof;
   }
   void editProf(){}
   void editDesc(){}
