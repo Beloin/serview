@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:serview/classes/classes.dart';
+import 'package:serview/ui/home_page.dart';
 
 class SignPage extends StatefulWidget {
   @override
@@ -7,6 +9,7 @@ class SignPage extends StatefulWidget {
 }
 
 class _SignPageState extends State<SignPage> {
+
   //Teste para Login:
   String _email;
   String _password;
@@ -18,6 +21,7 @@ class _SignPageState extends State<SignPage> {
   String _passwordSign2;
 
   double _hPadd = 20.0;
+  double _fontSize = 15.0;
 
   @override
   Widget build(BuildContext context) {
@@ -25,10 +29,20 @@ class _SignPageState extends State<SignPage> {
         length: 2,
         child: Scaffold(
           appBar: AppBar(
-            title: Text(
+            backgroundColor: Colors.lightBlue,
+            title: Row(children: <Widget>[
+              IconButton(icon: Icon(Icons.home),
+                onPressed: (){
+                  Navigator.push(context, MaterialPageRoute(
+                    builder: (context) => HomePage()
+                  ));
+                },
+              ),
+              Text(
               "Serview",
               style: TextStyle(fontSize: 20),
             ),
+            ],),
             bottom: TabBar(
               tabs: <Widget>[
                 Tab(
@@ -57,7 +71,7 @@ class _SignPageState extends State<SignPage> {
                           child: Text(
                             "Email:",
                             style: TextStyle(
-                                color: Colors.blueGrey, fontSize: 20.0),
+                                color: Colors.blueGrey, fontSize: _fontSize),
                           ),
                         ),
                       ],
@@ -81,7 +95,7 @@ class _SignPageState extends State<SignPage> {
                           child: Text(
                             "Senha:",
                             style: TextStyle(
-                                color: Colors.blueGrey, fontSize: 20.0),
+                                color: Colors.blueGrey, fontSize: _fontSize),
                           ),
                         ),
                       ],
@@ -113,8 +127,8 @@ class _SignPageState extends State<SignPage> {
                       child: Padding(
                         padding: EdgeInsets.symmetric(vertical: 5.0),
                         child: Container(
-                            width: 150.0,
-                            height: 150.0,
+                            width: 125.0,
+                            height: 125.0,
                             decoration: BoxDecoration(
                                 border:
                                     Border.all(color: Colors.blue, width: 3.0),
@@ -136,9 +150,9 @@ class _SignPageState extends State<SignPage> {
                           padding: EdgeInsets.symmetric(
                               horizontal: _hPadd, vertical: 5.0),
                           child: Text(
-                            "Nome Completo",
+                            "Nome Completo:",
                             style: TextStyle(
-                                color: Colors.blueGrey, fontSize: 20.0),
+                                color: Colors.blueGrey, fontSize: _fontSize),
                           ),
                         )
                       ],
@@ -149,7 +163,7 @@ class _SignPageState extends State<SignPage> {
                       child: _buildFieldText(
                         colorText: Colors.black,
                         onSubmitted: _name,
-                        label: "Digite Aqui Seu Nome Completo",
+                        label: "Digite Aqui Seu Nome Completo:",
                       ),
                     ),
                     Row(
@@ -159,9 +173,9 @@ class _SignPageState extends State<SignPage> {
                             padding: EdgeInsets.symmetric(
                                 horizontal: _hPadd, vertical: 5.0),
                             child: Text(
-                              "Seu Email",
+                              "Seu Email:",
                               style: TextStyle(
-                                  color: Colors.blueGrey, fontSize: 20.0),
+                                  color: Colors.blueGrey, fontSize: _fontSize),
                             ))
                       ],
                     ),
@@ -182,9 +196,9 @@ class _SignPageState extends State<SignPage> {
                             padding: EdgeInsets.symmetric(
                                 horizontal: _hPadd, vertical: 5.0),
                             child: Text(
-                              "Sua Senha",
+                              "Sua Senha:",
                               style: TextStyle(
-                                  color: Colors.blueGrey, fontSize: 20.0),
+                                  color: Colors.blueGrey, fontSize: _fontSize),
                             ))
                       ],
                     ),
@@ -204,9 +218,9 @@ class _SignPageState extends State<SignPage> {
                             padding: EdgeInsets.symmetric(
                                 horizontal: _hPadd, vertical: 5.0),
                             child: Text(
-                              "Sua Senha Novamente",
+                              "Sua Senha Novamente:",
                               style: TextStyle(
-                                  color: Colors.blueGrey, fontSize: 20.0),
+                                  color: Colors.blueGrey, fontSize: _fontSize),
                             ))
                       ],
                     ),
@@ -232,11 +246,14 @@ class _SignPageState extends State<SignPage> {
   }
 
   Widget _floatSent({label = "Label"}) {
-    return FloatingActionButton.extended(
+    return Container(
+      height: 45.0,
+      child: FloatingActionButton.extended(
         backgroundColor: Colors.blueGrey,
         onPressed: () {},
         label: Text(label),
-        icon: Icon(Icons.send));
+        icon: Icon(Icons.send))
+    );
   }
 
   Widget _buildFieldText(
@@ -246,23 +263,26 @@ class _SignPageState extends State<SignPage> {
       onSubmitted,
       obscureText = false,
       keyboardType = TextInputType.text}) {
-    return TextField(
+    return Container(
+      height: 50.0,
+      child: TextField(
       obscureText: obscureText,
       keyboardType: keyboardType,
       decoration: InputDecoration(
           border: OutlineInputBorder(
               borderSide: BorderSide(color: Colors.blue),
-              borderRadius: BorderRadius.circular(25.0)),
+              borderRadius: BorderRadius.circular(15.0)),
           labelText: label,
           labelStyle: TextStyle(color: Colors.blueGrey),
           enabledBorder: OutlineInputBorder(
               borderSide: BorderSide(color: Colors.blue),
-              borderRadius: BorderRadius.circular(25.0))),
+              borderRadius: BorderRadius.circular(15.0))),
       onSubmitted: (text) {
         onSubmitted = text;
         print(onSubmitted);
       },
       style: TextStyle(fontSize: fontSize, color: colorText),
+    )
     );
   }
 }
