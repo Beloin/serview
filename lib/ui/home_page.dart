@@ -8,11 +8,23 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-            title: Text(
-      "Serview",
-      style: TextStyle(fontSize: 20, color: Colors.amber),
-    )));
-  }
+  return Scaffold(
+    appBar: AppBar(
+      title:Text('Serview'),
+      backgroundColor: Colors.lightBlue,
+      centerTitle: true),
+    bottomNavigationBar: BottomAppBar(
+      child:Row(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          IconButton(icon: Icon(Icons.menu), onPressed: () {},),
+          IconButton(icon: Icon(Icons.search), onPressed: () {},),
+          IconButton(icon: Icon(Icons.person), onPressed: () {},),
+        ],
+      ),
+    ),
+  );
+ }
 }
+
