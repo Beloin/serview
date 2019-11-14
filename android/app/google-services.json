@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "891081508498",
+    "firebase_url": "https://serview-da8fc.firebaseio.com",
+    "project_id": "serview-da8fc",
+    "storage_bucket": "serview-da8fc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:891081508498:android:6433ed8fb0c90aea41884b",
+        "android_client_info": {
+          "package_name": "com.example.serview"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "891081508498-g0u0qu82cfqhehhp8o5uqpqkeg8jrm4c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQboWh4UqmPocvxeSHD9bWlKqD850PK4E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "891081508498-g0u0qu82cfqhehhp8o5uqpqkeg8jrm4c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
