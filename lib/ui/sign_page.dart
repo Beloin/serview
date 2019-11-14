@@ -135,9 +135,12 @@ class _SignPageState extends State<SignPage> {
                                 shape: BoxShape.circle,
                                 image: DecorationImage(
                                     fit: BoxFit.fitHeight,
-                                    image:AssetImage("assets/profile_pic.png"))),
+                                    image: AssetImage("assets/profile_pic.png"))),
                             child: Container(
-                              color: Colors.white38,
+                              decoration: BoxDecoration(
+                                color: Colors.white38,
+                                shape: BoxShape.circle,
+                              ),
                               child: Icon(Icons.add_a_photo),
                             )),
                       ),
