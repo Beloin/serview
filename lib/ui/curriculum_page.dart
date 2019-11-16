@@ -110,7 +110,7 @@ class _CurriculumPageState extends State<CurriculumPage> {
             mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
               Container(
-                padding: EdgeInsets.only(top: 25.0),
+                padding: EdgeInsets.only(top: 25.0,bottom: 5.0),
                 child:Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
@@ -121,7 +121,17 @@ class _CurriculumPageState extends State<CurriculumPage> {
                 ),
               ),
               Container(
-                padding: EdgeInsets.only(top: 15.0),
+                padding: EdgeInsets.only(top: 10.0,left: 15.0,right: 5.0,bottom: 10.0),
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    style: BorderStyle.solid,
+                    color: const Color(0xFF03A9F4),
+                    width: 1.5,
+                  ),
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(15.0)
+                  ),
+                ),
                 child: Text("Joiner është përgjegjës profesional për të punuar me dru, ndërtimin dhe riparimin e mobiljeve, dekorative, utilitare dhe copa të tjera të drurit.",
                 style: TextStyle(fontSize: 16)
                 ),
