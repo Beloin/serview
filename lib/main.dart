@@ -4,5 +4,5 @@ import 'package:serview/ui/sign_page.dart';
 import 'package:serview/ui/curriculum_page.dart';
 
 void main() => runApp(MaterialApp(
-      home: CurriculumPage(),
+      home: SignPage(),
     ));
