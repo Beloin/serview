@@ -30,6 +30,7 @@ class _CurriculumPageState extends State<CurriculumPage> {
         ],
       ),
     ),
+    
   );
  }
 }
