@@ -9,7 +9,6 @@ class SignPage extends StatefulWidget {
 }
 
 class _SignPageState extends State<SignPage> {
-
   //Teste para Login:
   String _email;
   String _password;
@@ -30,19 +29,15 @@ class _SignPageState extends State<SignPage> {
         child: Scaffold(
           appBar: AppBar(
             backgroundColor: Colors.lightBlue,
-            title: Row(children: <Widget>[
-              IconButton(icon: Icon(Icons.home),
-                onPressed: (){
-                  Navigator.push(context, MaterialPageRoute(
-                    builder: (context) => HomePage()
-                  ));
-                },
-              ),
-              Text(
-              "Serview",
-              style: TextStyle(fontSize: 20),
+            title: Text("Serview"),
+            centerTitle: true,
+            leading: IconButton(
+              icon: Icon(Icons.home),
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => HomePage()));
+              },
             ),
-            ],),
             bottom: TabBar(
               tabs: <Widget>[
                 Tab(
@@ -135,7 +130,8 @@ class _SignPageState extends State<SignPage> {
                                 shape: BoxShape.circle,
                                 image: DecorationImage(
                                     fit: BoxFit.fitHeight,
-                                    image: AssetImage("assets/profile_pic.png"))),
+                                    image:
+                                        AssetImage("assets/profile_pic.png"))),
                             child: Container(
                               decoration: BoxDecoration(
                                 color: Colors.white38,
@@ -188,7 +184,7 @@ class _SignPageState extends State<SignPage> {
                       child: _buildFieldText(
                         colorText: Colors.black,
                         keyboardType: TextInputType.emailAddress,
-                        label: "Escreva Aqui Seu Email",
+                        label: "Digite Aqui Seu Email",
                         onSubmitted: _emailSign,
                       ),
                     ),
@@ -211,7 +207,7 @@ class _SignPageState extends State<SignPage> {
                       child: _buildFieldText(
                           colorText: Colors.black,
                           obscureText: true,
-                          label: "Escreva Aqui Sua Senha",
+                          label: "Digite Aqui Sua Senha",
                           onSubmitted: _passwordSign),
                     ),
                     Row(
@@ -233,7 +229,7 @@ class _SignPageState extends State<SignPage> {
                       child: _buildFieldText(
                           colorText: Colors.black,
                           obscureText: true,
-                          label: "Escreva Aqui Sua Senha Novamente",
+                          label: "Digite Aqui Sua Senha Novamente",
                           onSubmitted: _passwordSign2),
                     ),
                     Padding(
@@ -250,13 +246,12 @@ class _SignPageState extends State<SignPage> {
 
   Widget _floatSent({label = "Label"}) {
     return Container(
-      height: 45.0,
-      child: FloatingActionButton.extended(
-        backgroundColor: Colors.blueGrey,
-        onPressed: () {},
-        label: Text(label),
-        icon: Icon(Icons.send))
-    );
+        height: 45.0,
+        child: FloatingActionButton.extended(
+            backgroundColor: Colors.blueGrey,
+            onPressed: () {},
+            label: Text(label),
+            icon: Icon(Icons.send)));
   }
 
   Widget _buildFieldText(
@@ -267,25 +262,26 @@ class _SignPageState extends State<SignPage> {
       obscureText = false,
       keyboardType = TextInputType.text}) {
     return Container(
-      height: 50.0,
-      child: TextField(
-      obscureText: obscureText,
-      keyboardType: keyboardType,
-      decoration: InputDecoration(
-          border: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.blue),
-              borderRadius: BorderRadius.circular(15.0)),
-          labelText: label,
-          labelStyle: TextStyle(color: Colors.blueGrey),
-          enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.blue),
-              borderRadius: BorderRadius.circular(15.0))),
-      onSubmitted: (text) {
-        onSubmitted = text;
-        print(onSubmitted);
-      },
-      style: TextStyle(fontSize: fontSize, color: colorText),
-    )
-    );
+        height: 50.0,
+        child: TextField(
+          obscureText: obscureText,
+          keyboardType: keyboardType,
+          decoration: InputDecoration(
+            border: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.blue),
+                borderRadius: BorderRadius.circular(15.0)),
+            focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.blue),
+                borderRadius: BorderRadius.circular(15.0),
+            ),
+            hintText: label,
+            hintStyle: TextStyle(color: Colors.blueGrey),
+          ),
+          onSubmitted: (text) {
+            onSubmitted = text;
+            print(onSubmitted);
+          },
+          style: TextStyle(fontSize: fontSize, color: colorText),
+        ));
   }
 }
