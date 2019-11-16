@@ -129,7 +129,7 @@ class _CurriculumPageState extends State<CurriculumPage> {
                     width: 1.5,
                   ),
                   borderRadius: BorderRadius.all(
-                    Radius.circular(15.0)
+                    Radius.circular(10.0)
                   ),
                 ),
                 child: Text("Joiner është përgjegjës profesional për të punuar me dru, ndërtimin dhe riparimin e mobiljeve, dekorative, utilitare dhe copa të tjera të drurit.",
