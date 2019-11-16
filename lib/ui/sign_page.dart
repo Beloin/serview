@@ -30,19 +30,15 @@ class _SignPageState extends State<SignPage> {
         child: Scaffold(
           appBar: AppBar(
             backgroundColor: Colors.lightBlue,
-            title: Row(children: <Widget>[
-              IconButton(icon: Icon(Icons.home),
+            title: Text("Serview"),
+            centerTitle: true,
+            leading: IconButton(icon: Icon(Icons.home),
                 onPressed: (){
                   Navigator.push(context, MaterialPageRoute(
                     builder: (context) => HomePage()
                   ));
                 },
               ),
-              Text(
-              "Serview",
-              style: TextStyle(fontSize: 20),
-            ),
-            ],),
             bottom: TabBar(
               tabs: <Widget>[
                 Tab(

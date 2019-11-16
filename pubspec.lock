@@ -29,6 +29,44 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.14.11"
+<<<<<<< HEAD
+=======
+  cupertino_icons:
+    dependency: "direct main"
+    description:
+      name: cupertino_icons
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.2"
+  firebase_auth:
+    dependency: "direct main"
+    description:
+      name: firebase_auth
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.14.0+9"
+  firebase_core:
+    dependency: transitive
+    description:
+      name: firebase_core
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.4.1+5"
+  firebase_messaging:
+    dependency: "direct main"
+    description:
+      name: firebase_messaging
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "5.1.8"
+  firebase_storage:
+    dependency: "direct main"
+    description:
+      name: firebase_storage
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.0.8"
+>>>>>>> dev
   flutter:
     dependency: "direct main"
     description: flutter
@@ -60,6 +98,16 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.6.4"
+<<<<<<< HEAD
+=======
+  path_provider:
+    dependency: "direct main"
+    description:
+      name: path_provider
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.4.2"
+>>>>>>> dev
   pedantic:
     dependency: transitive
     description:
@@ -74,6 +122,16 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.5"
+<<<<<<< HEAD
+=======
+  scoped_model:
+    dependency: "direct main"
+    description:
+      name: scoped_model
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.1"
+>>>>>>> dev
   sky_engine:
     dependency: transitive
     description: flutter
