@@ -8,9 +8,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:891081508498:android:6433ed8fb0c90aea41884b",
+        "mobilesdk_app_id": "1:891081508498:android:ac9453ee44ec7a3d41884b",
         "android_client_info": {
-          "package_name": "com.example.serview"
+          "package_name": "com.poo.serview"
         }
       },
       "oauth_client": [

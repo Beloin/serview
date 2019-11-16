@@ -31,8 +31,6 @@ dependencies:
   scoped_model: ^1.0.1
   path_provider: ^1.4.2
 
-  
-
 dev_dependencies:
   flutter_test:
     sdk: flutter

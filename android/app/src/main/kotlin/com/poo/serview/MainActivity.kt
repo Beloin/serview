@@ -1,4 +1,4 @@
-package com.example.serview
+package com.poo.serview
 
 import android.os.Bundle
 
