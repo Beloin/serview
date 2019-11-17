@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:serview/(unused)classes/classes.dart';
 import 'package:serview/ui/signPage/login.dart';
-import 'package:serview/ui/signPage/signIn.dart';
+import 'package:serview/ui/signPage/signUp.dart';
 import 'package:serview/ui/home_page.dart';
 
 class SignPage extends StatefulWidget {
@@ -47,7 +47,7 @@ class _SignPageState extends State<SignPage> {
                   child: LoginTab()),
               // Segunda Tab "Sign Up"
               Tab(
-                  child: SignInTab())
+                  child: SignUpTab())
             ],
           ),
         ));

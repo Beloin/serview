@@ -8,10 +8,12 @@ class Builders{
       fontSize = 15.0,
       onSubmitted,
       obscureText = false,
-      keyboardType = TextInputType.text}) {
+      keyboardType = TextInputType.text,
+      controller}) {
     return Container(
         height: 50.0,
         child: TextField(
+          controller: controller,
           obscureText: obscureText,
           keyboardType: keyboardType,
           decoration: InputDecoration(
@@ -33,12 +35,12 @@ class Builders{
         ));
   }
 
-  static   Widget floatSent({label = "Label"}) {
+  static   Widget floatSent({label = "Label", onPressed}) {
     return Container(
         height: 45.0,
         child: FloatingActionButton.extended(
             backgroundColor: Colors.blueGrey,
-            onPressed: () {},
+            onPressed: onPressed,
             label: Text(label),
             icon: Icon(Icons.send)));
   }
