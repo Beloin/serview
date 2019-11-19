@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:scoped_model/scoped_model.dart';
+import 'package:serview/models/user_model.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -24,6 +26,16 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
     ),
+    body: ScopedModelDescendant<UserModel>(
+      builder: (context, child, model){
+        if(model.isLoading) Center(
+            child: CircularProgressIndicator(),
+          );
+        return Center(
+          child: Text("${model.userData["name"]}"),
+        );
+      },
+    ) 
   );
  }
 }
