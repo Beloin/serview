@@ -1,20 +1,23 @@
+import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'dart:async';
+import 'package:serview/models/curriculum.dart';
 
 class UserModel extends Model {
   FirebaseAuth _auth = FirebaseAuth.instance;
 
   FirebaseUser firebaseUser;
   Map<String, dynamic> userData = Map();
+  Map<String, dynamic> userCurriculum = Map();
 
   bool isLoading = false;
+  bool fonecedor = false;
 
   @override
   void addListener(listener) {
-    // TODO: implement addListener
     super.addListener(listener);
     _loadCurrrentUser();
   }
@@ -51,8 +54,9 @@ class UserModel extends Model {
     isLoading = true;
     notifyListeners();
 
-
-    _auth.signInWithEmailAndPassword(email: email, password: pass).then((user) async {
+    _auth
+        .signInWithEmailAndPassword(email: email, password: pass)
+        .then((user) async {
       firebaseUser = user.user;
 
       await _loadCurrrentUser();
@@ -80,6 +84,14 @@ class UserModel extends Model {
         .collection("users")
         .document(firebaseUser.uid)
         .setData(userData);
+  }
+
+  Future<Null> _saveUserCurriculum(Map<String, dynamic> userCurriculum) async {
+    this.userCurriculum = userCurriculum;
+    await Firestore.instance
+        .collection("curriculum")
+        .document(firebaseUser.uid)
+        .setData(userCurriculum);
   }
 
   void signOut() async {

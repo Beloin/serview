@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:serview/models/user_model.dart';
 import 'package:serview/ui/constructors/builders.dart';
-import 'package:serview/ui/home_page.dart';
+import 'package:serview/ui/homePage/home_page.dart';
 
 class LoginTab extends StatefulWidget {
   @override
@@ -106,8 +106,7 @@ class _LoginTabState extends State<LoginTab> {
       duration: Duration(seconds: 2),
     ));
     Future.delayed(Duration(seconds: 1)).then((_){
-      Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => HomePage()));
+      Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
     }); 
   }
 

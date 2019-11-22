@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
+import 'package:serview/models/curriculum.dart';
 import 'package:serview/models/user_model.dart';
 import 'package:serview/ui/constructors/builders.dart';
-import 'package:serview/ui/home_page.dart';
+import 'package:serview/ui/homePage/home_page.dart';
+import 'dart:convert';
 
 class SignUpTab extends StatefulWidget {
   @override
@@ -16,11 +18,9 @@ class _SignUpTabState extends State<SignUpTab> {
 
   final _scaffoldKey = GlobalKey<ScaffoldState>();
 
-  String _test;
-
   double _hPadd = 20.0;
   double _fontSize = 15.0;
-
+  
   @override
   Widget build(BuildContext context) {
     return ScopedModelDescendant<UserModel>(
@@ -77,7 +77,6 @@ class _SignUpTabState extends State<SignUpTab> {
                   child: Builders.buildFieldText(
                     controller: _nameController,
                     colorText: Colors.black,
-                    onSubmitted: _test,
                     label: "Digite Aqui Seu Nome Completo",
                   ),
                 ),
@@ -102,7 +101,6 @@ class _SignUpTabState extends State<SignUpTab> {
                     colorText: Colors.black,
                     keyboardType: TextInputType.emailAddress,
                     label: "Digite Aqui Seu Email",
-                    onSubmitted: _test,
                   ),
                 ),
                 Row(
@@ -122,11 +120,11 @@ class _SignUpTabState extends State<SignUpTab> {
                   padding:
                       EdgeInsets.symmetric(horizontal: _hPadd, vertical: 5.0),
                   child: Builders.buildFieldText(
-                      controller: _passwordController,
-                      colorText: Colors.black,
-                      obscureText: true,
-                      label: "Digite Aqui Sua Senha",
-                      onSubmitted: _test),
+                    controller: _passwordController,
+                    colorText: Colors.black,
+                    obscureText: true,
+                    label: "Digite Aqui Sua Senha",
+                  ),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -145,10 +143,10 @@ class _SignUpTabState extends State<SignUpTab> {
                   padding:
                       EdgeInsets.symmetric(horizontal: _hPadd, vertical: 5.0),
                   child: Builders.buildFieldText(
-                      colorText: Colors.black,
-                      obscureText: true,
-                      label: "Digite Aqui Sua Senha Novamente",
-                      onSubmitted: _test),
+                    colorText: Colors.black,
+                    obscureText: true,
+                    label: "Digite Aqui Sua Senha Novamente",
+                  ),
                 ),
                 Padding(
                     padding: EdgeInsets.symmetric(vertical: 10.0),
@@ -158,6 +156,8 @@ class _SignUpTabState extends State<SignUpTab> {
                           Map<String, dynamic> userData = {
                             "name": _nameController.text,
                             "email": _emailController.text,
+                            "fornecedor": false,
+
                           };
                           model.signUp(
                               userData: userData,
@@ -180,10 +180,9 @@ class _SignUpTabState extends State<SignUpTab> {
       backgroundColor: Theme.of(context).primaryColor,
       duration: Duration(seconds: 2),
     ));
-    Future.delayed(Duration(seconds: 2)).then((_){
-      Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => HomePage()));
-    }); 
+    Future.delayed(Duration(seconds: 2)).then((_) {
+      Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
+    });
   }
 
   void _onFail() {

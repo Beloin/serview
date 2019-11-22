@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:serview/(unused)classes/classes.dart';
 import 'package:serview/ui/signPage/login.dart';
 import 'package:serview/ui/signPage/signUp.dart';
-import 'package:serview/ui/home_page.dart';
+import 'package:serview/ui/homePage/home_page.dart';
 
 class SignPage extends StatefulWidget {
   @override
@@ -22,13 +21,6 @@ class _SignPageState extends State<SignPage> {
             backgroundColor: Colors.lightBlue,
             title: Text("Serview"),
             centerTitle: true,
-            leading: IconButton(
-              icon: Icon(Icons.home),
-              onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => HomePage()));
-              },
-            ),
             bottom: TabBar(
               tabs: <Widget>[
                 Tab(
