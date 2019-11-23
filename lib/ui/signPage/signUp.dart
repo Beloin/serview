@@ -20,7 +20,7 @@ class _SignUpTabState extends State<SignUpTab> {
 
   double _hPadd = 20.0;
   double _fontSize = 15.0;
-  
+
   @override
   Widget build(BuildContext context) {
     return ScopedModelDescendant<UserModel>(
@@ -159,7 +159,9 @@ class _SignUpTabState extends State<SignUpTab> {
                             "fornecedor": false,
 
                           };
+                          Map<String, dynamic> userCurriculum = { "profession": null, "description": null};
                           model.signUp(
+                              userCurriculum: userCurriculum,
                               userData: userData,
                               pass: _passwordController.text,
                               onSuccess: _onSuccess,

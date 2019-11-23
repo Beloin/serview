@@ -11,11 +11,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return ScopedModelDescendant<UserModel>(builder:  (context, child, model){
-      if (!model.isLoggedIn()) {
-        return SignPage();
-      } else {
-        return Scaffold(
+    return Scaffold(
         appBar: AppBar(
             title: Text('Serview'),
             backgroundColor: Colors.lightBlue,
@@ -46,11 +42,14 @@ class _HomePageState extends State<HomePage> {
             Center(
               child: CircularProgressIndicator(),
             );
-          return Center(
-            child: Text("${model.userData["name"]}"),
+          return Column(
+            children: <Widget>[
+              Center(
+                child: Text("${model.userData["name"]}"),
+              ),
+              Text("${model.userCurriculum["profession"]}")
+            ],
           );
         }));
-      }
-    },);
   }
 }

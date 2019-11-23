@@ -24,9 +24,11 @@ class _LoginTabState extends State<LoginTab> {
   Widget build(BuildContext context) {
     return ScopedModelDescendant<UserModel>(builder: (context, child, model) {
       if (model.isLoading)
-        return Center(
+        return Scaffold(
+          key: _scaffoldKey,
+          body: Center(
           child: CircularProgressIndicator(),
-        );
+        ));
       return Scaffold(
         body: SingleChildScrollView(
           padding: EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 0.0),
@@ -105,9 +107,9 @@ class _LoginTabState extends State<LoginTab> {
       backgroundColor: Theme.of(context).primaryColor,
       duration: Duration(seconds: 2),
     ));
-    Future.delayed(Duration(seconds: 1)).then((_){
+    Future.delayed(Duration(seconds: 2)).then((_) {
       Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
-    }); 
+    });
   }
 
   void _onFail() {

@@ -7,14 +7,15 @@ import 'dart:async';
 import 'package:serview/models/curriculum.dart';
 
 class UserModel extends Model {
+  
   FirebaseAuth _auth = FirebaseAuth.instance;
-
   FirebaseUser firebaseUser;
+
   Map<String, dynamic> userData = Map();
   Map<String, dynamic> userCurriculum = Map();
 
   bool isLoading = false;
-  bool fonecedor = false;
+  bool logged = false;
 
   @override
   void addListener(listener) {
@@ -24,6 +25,7 @@ class UserModel extends Model {
 
   void signUp(
       {@required Map<String, dynamic> userData,
+      @required Map<String, dynamic> userCurriculum,
       @required String pass,
       @required VoidCallback onSuccess,
       @required VoidCallback onFail}) {
@@ -36,6 +38,7 @@ class UserModel extends Model {
         .then((user) async {
       firebaseUser = user.user;
       await _saveUserData(userData);
+      await _saveUserCurriculum(userCurriculum);
       onSuccess();
       isLoading = false;
       notifyListeners();
@@ -74,8 +77,11 @@ class UserModel extends Model {
 
   void recoverPass() {}
 
-  bool isLoggedIn() {
-    return firebaseUser != null;
+  void isLoggedIn(){
+    if(userData["name"] != null){
+      logged = true;
+    }
+    else logged = false;
   }
 
   Future<Null> _saveUserData(Map<String, dynamic> userData) async {
@@ -97,6 +103,7 @@ class UserModel extends Model {
   void signOut() async {
     await _auth.signOut();
     userData = Map();
+    userCurriculum = Map();
     firebaseUser = null;
     notifyListeners();
   }
@@ -110,6 +117,11 @@ class UserModel extends Model {
             .document(firebaseUser.uid)
             .get();
         userData = docUser.data;
+        DocumentSnapshot docUserCur = await Firestore.instance
+            .collection("curriculum")
+            .document(firebaseUser.uid)
+            .get();
+            userCurriculum = docUserCur.data;
       }
       notifyListeners();
     }
