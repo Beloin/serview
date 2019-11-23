@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:serview/models/curriculum.dart';
 import 'package:serview/ui/signPage/login.dart';
 import 'package:serview/ui/signPage/signUp.dart';
 import 'package:serview/ui/homePage/home_page.dart';
@@ -11,6 +12,12 @@ class SignPage extends StatefulWidget {
 
 class _SignPageState extends State<SignPage> {
   //Teste para Login:
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
