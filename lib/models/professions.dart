@@ -2,21 +2,20 @@ import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Professions {
-  Map<String, dynamic> prof = Map();
+  Map<String, dynamic> professions = Map();
 
   Future<Null> saveProfessions(Map<String, dynamic> prof) async {
-    this.prof = prof;
+    this.professions = prof;
     await Firestore.instance
         .collection("professions")
         .document("professions")
         .setData(prof);
   }
-
   Future<Null> loadProfessions() async {
     DocumentSnapshot docProfessions = await Firestore.instance
         .collection("professions")
         .document("professions")
         .get();
-        this.prof = docProfessions.data;
+        this.professions = docProfessions.data;
   }
 }

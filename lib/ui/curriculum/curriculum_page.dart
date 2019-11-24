@@ -113,7 +113,10 @@ class _CurriculumPageState extends State<CurriculumPage> {
                                 ],
                               ),
                               Row(
-                                children: <Widget>[StarDisplay(value: model.testUserCurriculum["rate"])],
+                                children: <Widget>[
+                                  StarDisplay(
+                                      value: model.testUserCurriculum["rate"])
+                                ],
                               ),
                             ],
                           ),
@@ -146,8 +149,7 @@ class _CurriculumPageState extends State<CurriculumPage> {
                         borderRadius: BorderRadius.all(Radius.circular(10.0)),
                       ),
                       //Description
-                      child: Text(
-                          model.testUserCurriculum["description"],
+                      child: Text(model.testUserCurriculum["description"],
                           style: TextStyle(fontSize: 16)),
                     ),
                   ],
