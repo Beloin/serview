@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:serview/models/curriculum.dart';
+import 'package:serview/models/professions.dart';
 import 'package:serview/ui/signPage/login.dart';
 import 'package:serview/ui/signPage/signUp.dart';
 import 'package:serview/ui/homePage/home_page.dart';

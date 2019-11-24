@@ -4,7 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'dart:async';
-import 'package:serview/models/curriculum.dart';
+import 'package:serview/models/professions.dart';
 
 class UserModel extends Model {
   
@@ -14,8 +14,12 @@ class UserModel extends Model {
   Map<String, dynamic> userData = Map();
   Map<String, dynamic> userCurriculum = Map();
 
+  Map<String, dynamic> testUserData = Map();
+  Map<String, dynamic> testUserCurriculum = Map();
+
+
   bool isLoading = false;
-  bool logged = false;
+  bool logged = true;
 
   @override
   void addListener(listener) {
@@ -125,5 +129,18 @@ class UserModel extends Model {
       }
       notifyListeners();
     }
+  }
+    Future<Null> loadTestUser(String userUid) async {
+        DocumentSnapshot docUser = await Firestore.instance
+            .collection("users")
+            .document(userUid)
+            .get();
+        testUserData = docUser.data;
+        DocumentSnapshot docUserCur = await Firestore.instance
+            .collection("curriculum")
+            .document(userUid)
+            .get();
+            testUserCurriculum = docUserCur.data;
+      notifyListeners();
   }
 }

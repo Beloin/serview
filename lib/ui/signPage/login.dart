@@ -25,10 +25,14 @@ class _LoginTabState extends State<LoginTab> {
     return ScopedModelDescendant<UserModel>(builder: (context, child, model) {
       if (model.isLoading)
         return Scaffold(
-          key: _scaffoldKey,
-          body: Center(
-          child: CircularProgressIndicator(),
-        ));
+            key: _scaffoldKey,
+              body: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+            Center(
+              child: CircularProgressIndicator(),
+            )
+          ]));
       return Scaffold(
         body: SingleChildScrollView(
           padding: EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 0.0),
