@@ -14,9 +14,8 @@ class _CategoriesPageState extends State<CategoriesPage> {
   Widget build(BuildContext context) {
     return ScopedModelDescendant<UserModel>(
       builder: (context, child, model) {
-        Professions prof;
-        prof.loadProfessions();
-
+        print(model.userProf.professions['professions']);
+        print(model.userProf.professions['professions'].length);
         return Scaffold(
             appBar: AppBar(
               title: Text('Categorias'),
@@ -52,11 +51,11 @@ class _CategoriesPageState extends State<CategoriesPage> {
               Expanded(
                   child: ListView.builder(
                 padding: EdgeInsets.only(top: 10.0),
-                itemCount: 0,
+                itemCount: model.userProf.professions['professions'].length,
                 itemBuilder: (context, index) {
                   return ListTile(
                       title: Text(
-                    prof.professions["professions"][index],
+                    model.userProf.professions['professions'][index],
                   ));
                 },
               )),

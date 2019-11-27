@@ -1,4 +1,4 @@
-import 'dart:convert';
+import 'dart:convert'; 
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Professions {
@@ -7,15 +7,17 @@ class Professions {
   Future<Null> saveProfessions(Map<String, dynamic> prof) async {
     this.professions = prof;
     await Firestore.instance
-        .collection("professions")
+        .collection("profession")
         .document("professions")
         .setData(prof);
   }
+
   Future<Null> loadProfessions() async {
     DocumentSnapshot docProfessions = await Firestore.instance
-        .collection("professions")
+        .collection("profession")
         .document("professions")
         .get();
-        this.professions = docProfessions.data;
+    this.professions = docProfessions.data;
   }
+
 }
