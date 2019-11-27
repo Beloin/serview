@@ -6,6 +6,7 @@ final String name = "Ubireudo da Silva Santos";
 final String email = "ubireudosilva@gmail.com";
 final String job = "Marceneiro";
 
+
 class ProfilePage extends StatefulWidget {
   @override
   _ProfilePageState createState() => _ProfilePageState();
@@ -24,81 +25,93 @@ class _ProfilePageState extends State<ProfilePage> {
           onPressed: () {},
         ),
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          Container(
-            color: Color(0xFF03A9F4),
-            padding: EdgeInsets.only(top: 10.0, bottom: 10.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Container(
-                  width: 120.0,
-                  height: 120.0,
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    image: DecorationImage(
-                      fit: BoxFit.fitHeight, image: NetworkImage(url)
-                    )
+      body: SingleChildScrollView(
+        child:Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            Container(
+              color: Color(0xFF03A9F4),
+              padding: EdgeInsets.only(top: 10.0, bottom: 10.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Container(
+                    width: 120.0,
+                    height: 120.0,
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      image: DecorationImage(
+                        fit: BoxFit.fitHeight, image: NetworkImage(url)
+                      )
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          Container(
-            color: Color(0xFFE1F5FE),
-            height: 50.0,
-            padding: EdgeInsets.only(left: 10),
-            child: Row(
-              children: <Widget>[
-                Text("PERFIL", style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, color: Color.fromARGB(100, 0, 0, 0))),
-              ],
-            ),
-          ),
-          Container(
-            height: 50.0,
-            padding: EdgeInsets.only(left: 15.0, right: 10.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Text("Nome", style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, color: Color.fromARGB(150, 0, 0, 0))),
-                Text(name, style: TextStyle(fontSize: 18.0)),
-              ],
-            ),
-          ),
-          Container(
-            height: 50.0,
-            padding: EdgeInsets.only(left: 15.0, right: 10.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Text("Email", style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, color: Color.fromARGB(150, 0, 0, 0))),
-                Text(email, style: TextStyle(fontSize: 18.0)),
-              ],
-            ),
-          ),
-          Container(
-            alignment: Alignment.center,
-            padding: EdgeInsets.only(top: 10.0),
-            child: RaisedButton(
-              child: Text("Editar Perfil"),
-              onPressed: () {},
+            Container(
               color: Color(0xFFE1F5FE),
+              height: 50.0,
+              padding: EdgeInsets.only(left: 10),
+              child: Row(
+                children: <Widget>[
+                  Text("PERFIL", style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, color: Color.fromARGB(100, 0, 0, 0))),
+                ],
+              ),
             ),
-          ),
-          Container(
-            alignment: Alignment.center,
-            padding: EdgeInsets.only(top: 10.0),
-            child: RaisedButton(
-              child: Text("Torne-se Fornecedor"),
-              onPressed: () {},
+            Container(
+              height: 50.0,
+              padding: EdgeInsets.only(left: 15.0, right: 10.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Text("Nome", style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, color: Color.fromARGB(150, 0, 0, 0))),
+                  Text(name, style: TextStyle(fontSize: 18.0)),
+                ],
+              ),
+            ),
+            Container(
+              height: 50.0,
+              padding: EdgeInsets.only(left: 15.0, right: 10.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Text("Email", style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, color: Color.fromARGB(150, 0, 0, 0))),
+                  Text(email, style: TextStyle(fontSize: 18.0)),
+                ],
+              ),
+            ),
+            Container(
               color: Color(0xFFE1F5FE),
+              height: 50.0,
+              padding: EdgeInsets.only(left: 10),
+              child: Row(
+                children: <Widget>[
+                  Text("EDITAR PERFIL", style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, color: Color.fromARGB(100, 0, 0, 0))),
+                ],
+              ),
             ),
-          ),
-        ],
-      ),
+            Container(
+              child: ExpansionTile(
+                title: Text("Editar Nome", style: TextStyle(fontSize: 18.0)),
+                children: <Widget>[],
+              ),
+            ),
+            Container(
+              child: ExpansionTile(
+                title: Text("Editar Senha", style: TextStyle(fontSize: 18.0)),
+                children: <Widget>[],
+              ),
+            ),
+            Container(
+              child: ExpansionTile(
+                title: Text("Editar Foto de Perfil", style: TextStyle(fontSize: 18.0)),
+                children: <Widget>[],
+              ),
+            ),
+          ],
+        ),
+     ),
     );
   }
 }
