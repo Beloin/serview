@@ -15,7 +15,12 @@ class _HomePageState extends State<HomePage> {
         appBar: AppBar(
             title: Text('Serview'),
             backgroundColor: Colors.lightBlue,
-            centerTitle: true),
+            centerTitle: true,
+            actions: <Widget>[
+              IconButton(icon: Icon(Icons.favorite),
+              onPressed: () {},
+              )
+            ],),
         bottomNavigationBar: BottomAppBar(
           child: Row(
             mainAxisSize: MainAxisSize.max,
