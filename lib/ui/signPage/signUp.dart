@@ -165,7 +165,7 @@ class _SignUpTabState extends State<SignUpTab> {
                             "fornecedor": false,
                           };
                           Map<String, dynamic> userCurriculum = {
-                            //"name": _nameController,
+                            "name": _nameController,
                             "profession": null,
                             "description": null,
                             "rate": null

@@ -9,7 +9,7 @@ class Professions {
     await Firestore.instance
         .collection("profession")
         .document("professions")
-        .setData(prof);
+        .setData(prof); 
   }
 
   Future<Null> loadProfessions() async {

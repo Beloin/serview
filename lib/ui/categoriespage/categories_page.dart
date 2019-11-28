@@ -3,6 +3,7 @@ import 'package:scoped_model/scoped_model.dart';
 import 'package:serview/models/professions.dart';
 import 'package:serview/models/user_model.dart';
 import 'package:serview/ui/homePage/home_page.dart';
+import 'package:serview/ui/search_page/search_page.dart';
 
 class CategoriesPage extends StatefulWidget {
   @override
@@ -38,7 +39,10 @@ class _CategoriesPageState extends State<CategoriesPage> {
                   ),
                   IconButton(
                     icon: Icon(Icons.search),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => SearchPage()));
+                    },
                   ),
                   IconButton(
                     icon: Icon(Icons.person),
@@ -57,6 +61,8 @@ class _CategoriesPageState extends State<CategoriesPage> {
                     trailing: Icon(Icons.keyboard_arrow_right),
                     onTap: (){
                       //Incluir aqui a ida para a pagina pesquisa
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => SearchPage()));
                     },
                       title: Text(
                     model.userProf.professions['professions'][index],
