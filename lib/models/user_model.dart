@@ -4,23 +4,28 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'dart:async';
-import 'package:serview/models/curriculum.dart';
+import 'package:serview/models/professions.dart';
 
 class UserModel extends Model {
-  
   FirebaseAuth _auth = FirebaseAuth.instance;
   FirebaseUser firebaseUser;
 
   Map<String, dynamic> userData = Map();
   Map<String, dynamic> userCurriculum = Map();
+  
+  Map<String, dynamic> testUserData = Map();
+  Map<String, dynamic> testUserCurriculum = Map();
+
+  Professions userProf = Professions();
 
   bool isLoading = false;
-  bool logged = false;
+  bool logged = true;
 
   @override
   void addListener(listener) {
     super.addListener(listener);
     _loadCurrrentUser();
+    userProf.loadProfessions();
   }
 
   void signUp(
@@ -77,11 +82,11 @@ class UserModel extends Model {
 
   void recoverPass() {}
 
-  void isLoggedIn(){
-    if(userData["name"] != null){
+  void isLoggedIn() {
+    if (userData["name"] != null) {
       logged = true;
-    }
-    else logged = false;
+    } else
+      logged = false;
   }
 
   Future<Null> _saveUserData(Map<String, dynamic> userData) async {
@@ -121,9 +126,21 @@ class UserModel extends Model {
             .collection("curriculum")
             .document(firebaseUser.uid)
             .get();
-            userCurriculum = docUserCur.data;
+        userCurriculum = docUserCur.data;
       }
       notifyListeners();
     }
+  }
+
+  Future<Null> loadTestUser(String userUid) async {
+    DocumentSnapshot docUser =
+        await Firestore.instance.collection("users").document(userUid).get();
+    testUserData = docUser.data;
+    DocumentSnapshot docUserCur = await Firestore.instance
+        .collection("curriculum")
+        .document(userUid)
+        .get();
+    testUserCurriculum = docUserCur.data;
+    notifyListeners();
   }
 }
