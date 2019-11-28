@@ -54,8 +54,13 @@ class _CategoriesPageState extends State<CategoriesPage> {
                 itemCount: model.userProf.professions['professions'].length,
                 itemBuilder: (context, index) {
                   return ListTile(
+                    trailing: Icon(Icons.keyboard_arrow_right),
+                    onTap: (){
+                      //Incluir aqui a ida para a pagina pesquisa
+                    },
                       title: Text(
                     model.userProf.professions['professions'][index],
+                    
                   ));
                 },
               )),

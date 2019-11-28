@@ -12,7 +12,7 @@ class UserModel extends Model {
 
   Map<String, dynamic> userData = Map();
   Map<String, dynamic> userCurriculum = Map();
-
+  
   Map<String, dynamic> testUserData = Map();
   Map<String, dynamic> testUserCurriculum = Map();
 
