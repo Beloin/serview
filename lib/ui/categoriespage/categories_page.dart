@@ -15,8 +15,6 @@ class _CategoriesPageState extends State<CategoriesPage> {
   Widget build(BuildContext context) {
     return ScopedModelDescendant<UserModel>(
       builder: (context, child, model) {
-        print(model.userProf.professions['professions']);
-        print(model.userProf.professions['professions'].length);
         return Scaffold(
             appBar: AppBar(
               title: Text('Categorias'),
@@ -40,8 +38,12 @@ class _CategoriesPageState extends State<CategoriesPage> {
                   IconButton(
                     icon: Icon(Icons.search),
                     onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => SearchPage()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => SearchPage(
+                                    searchVar: '',
+                                  )));
                     },
                   ),
                   IconButton(
@@ -54,20 +56,31 @@ class _CategoriesPageState extends State<CategoriesPage> {
             body: Column(children: <Widget>[
               Expanded(
                   child: ListView.builder(
-                padding: EdgeInsets.only(top: 10.0),
                 itemCount: model.userProf.professions['professions'].length,
                 itemBuilder: (context, index) {
-                  return ListTile(
-                    trailing: Icon(Icons.keyboard_arrow_right),
-                    onTap: (){
-                      //Incluir aqui a ida para a pagina pesquisa
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => SearchPage()));
-                    },
-                      title: Text(
-                    model.userProf.professions['professions'][index],
-                    
-                  ));
+                  return Container(
+                      decoration: BoxDecoration(
+                          border: Border(
+                        bottom: BorderSide(
+                          color: Colors.blueAccent,
+                        ),
+                      )),
+                      child: ListTile(
+                          trailing: Icon(Icons.keyboard_arrow_right),
+                          onTap: () {
+                            //Incluir aqui a ida para a pagina pesquisa
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => SearchPage(
+                                          searchVar: model.userProf
+                                                  .professions['professions']
+                                              [index],
+                                        )));
+                          },
+                          title: Text(
+                            model.userProf.professions['professions'][index],
+                          )));
                 },
               )),
             ]));
