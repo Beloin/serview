@@ -23,7 +23,7 @@ class _SearchPageState extends State<SearchPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Digite aqui"),
+          title: Text("Pesquisar"),
           centerTitle: true,
         ),
         body: Container(
@@ -33,7 +33,7 @@ class _SearchPageState extends State<SearchPage> {
               Row(
                 children: <Widget>[
                   Builders.buildFieldText(
-                    label: "Pesquisar",
+                    label: "Digite aqui",
                     colorText: Colors.black,
                   ),
                   FlatButton(
