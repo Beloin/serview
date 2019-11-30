@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:serview/ui/constructors/builders.dart';
 
 final String url =
     "https://rd1.com.br/wp-content/uploads/2019/09/20190908-rd1-alexandre-frota.png";
@@ -93,20 +94,91 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
             Container(
               child: ExpansionTile(
-                title: Text("Editar Nome", style: TextStyle(fontSize: 18.0)),
-                children: <Widget>[],
+                title: Text("Editar Nome", style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, color: Color.fromARGB(150, 0, 0, 0))),
+                children: <Widget>[
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 5.0),
+                    child: Builders.buildFieldText(
+                      colorText: Colors.black,
+                      label: "Digite Aqui Seu Novo Nome",
+                    ),
+                  ),
+                  RaisedButton(
+                    onPressed: () {},
+                    child: Text("Salvar Alterações"),
+                    color: Colors.lightBlue[200],
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                  ),                  
+                ],
               ),
             ),
             Container(
               child: ExpansionTile(
-                title: Text("Editar Senha", style: TextStyle(fontSize: 18.0)),
-                children: <Widget>[],
+                title: Text("Editar Senha", style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, color: Color.fromARGB(150, 0, 0, 0))),
+                children: <Widget>[
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 5.0),
+                    child: Builders.buildFieldText(
+                      colorText: Colors.black,
+                      label: "Digite Aqui Sua Nova Senha",
+                    ),
+                  ),
+                  RaisedButton(
+                    onPressed: () {},
+                    child: Text("Salvar Alterações"),
+                    color: Colors.lightBlue[200],
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                  ),
+                ],
               ),
             ),
             Container(
               child: ExpansionTile(
-                title: Text("Editar Foto de Perfil", style: TextStyle(fontSize: 18.0)),
+                title: Text("Editar Foto de Perfil", style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, color: Color.fromARGB(150, 0, 0, 0))),
                 children: <Widget>[],
+              ),
+            ),
+            Container(
+              color: Color(0xFFE1F5FE),
+              height: 50.0,
+              padding: EdgeInsets.only(left: 10),
+              child: Row(
+                children: <Widget>[
+                  Text("TORNE-SE UM FORNECEDOR", style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, color: Color.fromARGB(100, 0, 0, 0))),
+                ],
+              ),
+            ),
+            Container(
+              child: ExpansionTile(
+                title: Text("Profissão", style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, color: Color.fromARGB(150, 0, 0, 0))),
+                children: <Widget>[
+                  RaisedButton(
+                    onPressed: () {},
+                    child: Text("Salvar Alterações"),
+                    color: Colors.lightBlue[200],
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              child: ExpansionTile(
+                title: Text("Descrição", style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, color: Color.fromARGB(150, 0, 0, 0))),
+                children: <Widget>[
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 5.0),
+                    child: Builders.buildFieldText(
+                      colorText: Colors.black,
+                      label: "Digite Aqui Sua Descrição",
+                    ),
+                  ),
+                  RaisedButton(
+                    onPressed: () {},
+                    child: Text("Salvar Alterações"),
+                    color: Colors.lightBlue[200],
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                  ),
+                ],
               ),
             ),
           ],
