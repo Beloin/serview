@@ -41,9 +41,7 @@ class _CategoriesPageState extends State<CategoriesPage> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => SearchPage(
-                                    searchVar: '',
-                                  )));
+                              builder: (context) => SearchPage(str: "aaaa",)));
                     },
                   ),
                   IconButton(
@@ -72,11 +70,9 @@ class _CategoriesPageState extends State<CategoriesPage> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => SearchPage(
-                                          searchVar: model.userProf
-                                                  .professions['professions']
-                                              [index],
-                                        )));
+                                    builder: (context) => SearchPage(str:
+                                      model.userProf.professions['professions'][index]
+                                    )));
                           },
                           title: Text(
                             model.userProf.professions['professions'][index],

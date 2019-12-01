@@ -1,50 +1,56 @@
 import 'package:flutter/material.dart';
-import 'package:serview/ui/homePage/home_page.dart';
+import 'package:scoped_model/scoped_model.dart';
+import 'package:serview/models/user_model.dart';
 import 'package:serview/ui/constructors/builders.dart';
 
 class SearchPage extends StatefulWidget {
-  var searchVar;
-  SearchPage({@required String searchVar}) {
-    this.searchVar = searchVar;
-  }
+  final String str;
+  SearchPage({this.str});
 
   @override
-  _SearchPageState createState() => _SearchPageState(todo: searchVar);
+  _SearchPageState createState() => _SearchPageState(search: str);
 }
 
 class _SearchPageState extends State<SearchPage> {
-  var nameController = TextEditingController();
+  final String search;
 
-  _SearchPageState({Key key, @required String todo}) {
-    nameController.text = todo;
-  }
+  _SearchPageState({this.search});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text("Pesquisar"),
-          centerTitle: true,
+      appBar: AppBar(
+        title: Text("Pesquisar"),
+        centerTitle: true,
+        backgroundColor: Colors.lightBlue,
+      ),
+      body: Container(
+        child: Column(
+          children: <Widget>[
+            Padding(
+                padding: EdgeInsets.fromLTRB(10.0, 5.0, 10.0, 5.0),
+                child: Builders.buildFieldText(
+                  label: "Escreva aqui",
+                  colorText: Colors.black,
+                )),
+            FlatButton(
+              onPressed: () {
+                print(search);
+              },
+              child: Icon(Icons.details),
+            ),
+            ScopedModelDescendant<UserModel>(
+              builder: (context, child, model) {
+                model.loadTestUser("PCj7HTwtvEqjqxdSVxN4");
+                print(model.testUserData['name']);
+                //print(model.testUserCurriculum['profession']);
+                return Builders.listTilePerfil(
+                    usrName: model.testUserData['name'], usrProf: "aaaaa");
+              },
+            )
+          ],
         ),
-        body: Container(
-          padding: EdgeInsets.fromLTRB(10.0, 5.0, 10.0, 5.0),
-          child: Column(
-            children: <Widget>[
-              Row(
-                children: <Widget>[
-                  Builders.buildFieldText(
-                    label: "Digite aqui",
-                    colorText: Colors.black,
-                  ),
-                  FlatButton(
-                    child: Text("Pesquisar"),
-                    onPressed: (){},
-                    textColor: Colors.white,
-                  )
-                ],
-              )
-            ],
-          ),
-        ));
+      ),
+    );
   }
 }
