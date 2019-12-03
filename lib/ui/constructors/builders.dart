@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-class Builders{
-
+class Builders {
   static Widget buildFieldText(
       {label = "TextField",
       colorText = Colors.blue,
@@ -21,8 +20,8 @@ class Builders{
                 borderSide: BorderSide(color: Colors.blue),
                 borderRadius: BorderRadius.circular(15.0)),
             focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.blue),
-                borderRadius: BorderRadius.circular(15.0),
+              borderSide: BorderSide(color: Colors.blue),
+              borderRadius: BorderRadius.circular(15.0),
             ),
             hintText: label,
             hintStyle: TextStyle(color: Colors.blueGrey),
@@ -35,7 +34,7 @@ class Builders{
         ));
   }
 
-  static   Widget floatSent({label = "Label", onPressed}) {
+  static Widget floatSent({label = "Label", onPressed}) {
     return Container(
         height: 45.0,
         child: FloatingActionButton.extended(
@@ -45,4 +44,19 @@ class Builders{
             icon: Icon(Icons.send)));
   }
 
+  static Widget listTilePerfil({@required String usrName, @required usrProf}) {
+    return ListTile(
+        leading: Container(
+          width: 125.0,
+          height: 125.0,
+          decoration: BoxDecoration(
+              border: Border.all(color: Colors.blue, width: 3.0),
+              shape: BoxShape.circle,
+              image: DecorationImage(
+                  fit: BoxFit.fitHeight,
+                  image: AssetImage("assets/profile_pic.png"))),
+        ),
+        title: Text(usrName),
+        subtitle: Text(usrProf));
+  }
 }

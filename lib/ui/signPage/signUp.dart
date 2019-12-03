@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
-import 'package:serview/models/curriculum.dart';
+import 'package:serview/models/professions.dart';
 import 'package:serview/models/user_model.dart';
 import 'package:serview/ui/constructors/builders.dart';
 import 'package:serview/ui/homePage/home_page.dart';
@@ -26,9 +26,15 @@ class _SignUpTabState extends State<SignUpTab> {
     return ScopedModelDescendant<UserModel>(
       builder: (context, child, model) {
         if (model.isLoading)
-          Center(
-            child: CircularProgressIndicator(),
-          );
+          return Scaffold(
+            key: _scaffoldKey,
+              body: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+            Center(
+              child: CircularProgressIndicator(),
+            )
+          ]));
         return Scaffold(
           key: _scaffoldKey,
           body: SingleChildScrollView(
@@ -157,9 +163,13 @@ class _SignUpTabState extends State<SignUpTab> {
                             "name": _nameController.text,
                             "email": _emailController.text,
                             "fornecedor": false,
-
                           };
-                          Map<String, dynamic> userCurriculum = { "profession": null, "description": null};
+                          Map<String, dynamic> userCurriculum = {
+                            "name": _nameController,
+                            "profession": null,
+                            "description": null,
+                            "rate": null
+                          };
                           model.signUp(
                               userCurriculum: userCurriculum,
                               userData: userData,
@@ -183,7 +193,8 @@ class _SignUpTabState extends State<SignUpTab> {
       duration: Duration(seconds: 2),
     ));
     Future.delayed(Duration(seconds: 2)).then((_) {
-      Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => HomePage()));
     });
   }
 

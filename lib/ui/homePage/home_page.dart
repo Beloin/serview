@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:serview/models/user_model.dart';
+import 'package:serview/ui/categoriespage/categories_page.dart';
 import 'package:serview/ui/signPage/sign_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -13,6 +14,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          automaticallyImplyLeading: false,
             title: Text('Serview'),
             backgroundColor: Colors.lightBlue,
             centerTitle: true,
@@ -28,7 +30,10 @@ class _HomePageState extends State<HomePage> {
             children: <Widget>[
               IconButton(
                 icon: Icon(Icons.menu),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => CategoriesPage()));
+                },
               ),
               IconButton(
                 icon: Icon(Icons.search),
