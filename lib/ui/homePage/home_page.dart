@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:serview/models/user_model.dart';
 import 'package:serview/ui/categoriespage/categories_page.dart';
+import 'package:serview/ui/favoritePage/favorite_page.dart';
 import 'package:serview/ui/signPage/sign_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -20,7 +21,10 @@ class _HomePageState extends State<HomePage> {
             centerTitle: true,
             actions: <Widget>[
               IconButton(icon: Icon(Icons.favorite),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => FavoritePage()));
+              },
               )
             ],),
         bottomNavigationBar: BottomAppBar(
