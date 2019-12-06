@@ -2,6 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:serview/ui/homePage/home_page.dart';
 import 'package:serview/ui/search_page/search_page.dart';
 import 'package:serview/ui/profilePage/profile_page.dart';
+import 'package:serview/ui/curriculumPage/curriculum_page.dart';
+
+final String url =
+    "https://rd1.com.br/wp-content/uploads/2019/09/20190908-rd1-alexandre-frota.png";
+final String name = "Ubireudo da Silva Santos";
+final String job = "Marceneiro";
 
 
 class FavoritePage extends StatefulWidget {
@@ -48,6 +54,58 @@ class _FavoritePageState extends State<FavoritePage> {
             ],
           ),
       ),
+      body:ListView.builder(
+        itemCount: 10,
+        itemBuilder: (context,index) {
+          return buildListFavorite();
+        },
+      ),
     );
   }
+  buildListFavorite(){
+    return GestureDetector(
+      onTap: (){Navigator.push(context,MaterialPageRoute(builder: (context) => CurriculumPage()));},
+      child:Container(  
+        padding: EdgeInsets.only(left: 5.0,top: 5.0,bottom: 20.0),
+        child:Row(
+          children: <Widget>[
+            Container(
+              padding: EdgeInsets.only(right: 20.0),
+              width: 80,
+              height: 80,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                image: DecorationImage(
+                    fit: BoxFit.fitHeight,
+                    image: NetworkImage(url))),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: <Widget>[
+                Column(
+                  children: <Widget>[
+                    Row(
+                      children: <Widget>[
+                        Text(name,style: TextStyle(fontSize: 18)),
+                      ],
+                    ),
+                    Row(
+                      children: <Widget>[
+                        Text(job,style: TextStyle(fontSize: 18)),
+                      ],
+                    ),
+                    Row(
+                      children: <Widget>[
+                        StarDisplay(),
+                      ],
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),    
+    );
+  } 
 }

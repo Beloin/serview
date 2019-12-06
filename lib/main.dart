@@ -9,10 +9,11 @@ import 'package:serview/ui/curriculumPage/curriculum_page.dart';
 import 'package:serview/ui/categoriespage/categories_page.dart';
 import 'package:serview/ui/favoritePage/favorite_page.dart';
 
+
 void main() => runApp(
       ScopedModel<UserModel>(
           model: UserModel(),
           child: MaterialApp(
-            home: FavoritePage()
+            home: HomePage()
           )),
     );
