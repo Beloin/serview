@@ -44,19 +44,4 @@ class Builders {
             icon: Icon(Icons.send)));
   }
 
-  static Widget listTilePerfil({@required String usrName, @required usrProf}) {
-    return ListTile(
-        leading: Container(
-          width: 125.0,
-          height: 125.0,
-          decoration: BoxDecoration(
-              border: Border.all(color: Colors.blue, width: 3.0),
-              shape: BoxShape.circle,
-              image: DecorationImage(
-                  fit: BoxFit.fitHeight,
-                  image: AssetImage("assets/profile_pic.png"))),
-        ),
-        title: Text(usrName),
-        subtitle: Text(usrProf));
-  }
 }

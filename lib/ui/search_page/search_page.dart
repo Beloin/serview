@@ -33,20 +33,19 @@ class _SearchPageState extends State<SearchPage> {
                   label: "Escreva aqui",
                   colorText: Colors.black,
                 )),
-            FlatButton(
-              onPressed: () {
-                print(search);
-              },
-              child: Icon(Icons.details),
-            ),
-            ScopedModelDescendant<UserModel>(
-              builder: (context, child, model) {
-                model.loadTestUser("PCj7HTwtvEqjqxdSVxN4");
-                print(model.testUserData['name']);
-                //print(model.testUserCurriculum['profession']);
-                return Builders.listTilePerfil(
-                    usrName: model.testUserData['name'], usrProf: "aaaaa");
-              },
+            Text(search),
+            //Talvez coloque uma Row para colocar um Expanded para ficar bonito
+            Row(
+              children: <Widget>[
+                Expanded(
+                    child: ListTile(
+                  leading: Icon(Icons.person_pin_circle),
+                  title: Text('Corno que dorme cedo'),
+                  subtitle: Text('Acorda na gaiola'),
+                  trailing: Icon(Icons.pets),
+                )
+                )
+              ],
             )
           ],
         ),

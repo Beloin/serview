@@ -12,14 +12,15 @@ class UserModel extends Model {
 
   Map<String, dynamic> userData = Map();
   Map<String, dynamic> userCurriculum = Map();
-  
+  Map<String, dynamic> publicUser = Map();
+
   Map<String, dynamic> testUserData = Map();
   Map<String, dynamic> testUserCurriculum = Map();
 
   Professions userProf = Professions();
 
   bool isLoading = false;
-  bool logged = true;
+  bool logged = false;
 
   @override
   void addListener(listener) {
@@ -31,19 +32,26 @@ class UserModel extends Model {
   void signUp(
       {@required Map<String, dynamic> userData,
       @required Map<String, dynamic> userCurriculum,
+      @required Map<String, dynamic> publicUser,
       @required String pass,
       @required VoidCallback onSuccess,
       @required VoidCallback onFail}) {
     isLoading = true;
     notifyListeners();
 
+    // (Não) Trocar a forma de salvar Currículo e Users com o 'email'
+
+    // Verificar como fazer um usuário público para adicionar as informações capturadas
+
     _auth
         .createUserWithEmailAndPassword(
             email: userData["email"], password: pass)
         .then((user) async {
       firebaseUser = user.user;
+      //var _email = userData['email'];
       await _saveUserData(userData);
       await _saveUserCurriculum(userCurriculum);
+      await _savePublicUser(publicUser);
       onSuccess();
       isLoading = false;
       notifyListeners();
@@ -105,6 +113,21 @@ class UserModel extends Model {
         .setData(userCurriculum);
   }
 
+  Future<Null> _savePublicUser(Map<String, dynamic> publicUser) async {
+    DocumentSnapshot docPublicUser = await Firestore.instance
+        .collection('publicUsers')
+        .document('publicList')
+        .get();
+    var publicList = docPublicUser.data;
+    var temp = new List.from(publicList['public']);
+    temp.add(publicUser);
+    publicList['public'] = temp;
+    await Firestore.instance
+        .collection("publicUsers")
+        .document('publicList')
+        .setData(publicList);
+  }
+
   void signOut() async {
     await _auth.signOut();
     userData = Map();
@@ -127,6 +150,11 @@ class UserModel extends Model {
             .document(firebaseUser.uid)
             .get();
         userCurriculum = docUserCur.data;
+        DocumentSnapshot docPublicUser = await Firestore.instance
+            .collection("publicuser")
+            .document('publicList')
+            .get();
+        publicUser = docPublicUser.data;
       }
       notifyListeners();
     }

@@ -164,15 +164,24 @@ class _SignUpTabState extends State<SignUpTab> {
                             "email": _emailController.text,
                             "fornecedor": false,
                           };
+                          //Salvo já currículo só para teste, apagar depois
                           Map<String, dynamic> userCurriculum = {
-                            "name": _nameController,
+                            "name": _nameController.text,
                             "profession": null,
                             "description": null,
-                            "rate": null
+                            "rate": 3
+                          };
+                          //Necessário criar e trocar para "email"
+                          Map<String, dynamic> publicUser = {
+                            "name": _nameController.text,
+                            "email": _emailController.text,
+                            "rate": 3,
+                            'curriculum': userCurriculum,
                           };
                           model.signUp(
                               userCurriculum: userCurriculum,
                               userData: userData,
+                              publicUser: publicUser,
                               pass: _passwordController.text,
                               onSuccess: _onSuccess,
                               onFail: _onFail);
