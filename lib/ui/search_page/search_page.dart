@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
+import 'package:serview/models/publicUser.dart';
 import 'package:serview/models/user_model.dart';
 import 'package:serview/ui/constructors/builders.dart';
 
@@ -33,20 +34,27 @@ class _SearchPageState extends State<SearchPage> {
                   label: "Escreva aqui",
                   colorText: Colors.black,
                 )),
-            FlatButton(
-              onPressed: () {
-                print(search);
+            Text(search),
+            IconButton(
+              icon: Icon(Icons.desktop_mac),
+              onPressed: () async {
+                var a = PublicUser();
+                a.loadPublicUserByEmail2("sennah.bs@gmail.com");
+                await Future.delayed(Duration(seconds: 2));
+                print(a.publicUserData["name"]);
               },
-              child: Icon(Icons.details),
             ),
-            ScopedModelDescendant<UserModel>(
-              builder: (context, child, model) {
-                model.loadTestUser("PCj7HTwtvEqjqxdSVxN4");
-                print(model.testUserData['name']);
-                //print(model.testUserCurriculum['profession']);
-                return Builders.listTilePerfil(
-                    usrName: model.testUserData['name'], usrProf: "aaaaa");
-              },
+            //Talvez coloque uma Row para colocar um Expanded para ficar bonito
+            Row(
+              children: <Widget>[
+                Expanded(
+                    child: ListTile(
+                  leading: Icon(Icons.person_pin_circle),
+                  title: Text("AaAaAaA"),
+                  subtitle: Text("Amanhã vou parar na gaiola"),
+                  trailing: Icon(Icons.pets),
+                ))
+              ],
             )
           ],
         ),
