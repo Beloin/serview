@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:serview/models/user_model.dart';
 import 'package:serview/ui/categoriespage/categories_page.dart';
+import 'package:serview/ui/favoritePage/favorite_page.dart';
+import 'package:serview/ui/profilePage/profile_page.dart';
 import 'package:serview/ui/signPage/sign_page.dart';
+import 'package:serview/ui/search_page/search_page.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -20,7 +23,10 @@ class _HomePageState extends State<HomePage> {
             centerTitle: true,
             actions: <Widget>[
               IconButton(icon: Icon(Icons.favorite),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => FavoritePage()));
+              },
               )
             ],),
         bottomNavigationBar: BottomAppBar(
@@ -37,11 +43,17 @@ class _HomePageState extends State<HomePage> {
               ),
               IconButton(
                 icon: Icon(Icons.search),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => SearchPage()));
+                },
               ),
               IconButton(
                 icon: Icon(Icons.person),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => ProfilePage()));
+                },
               ),
             ],
           ),

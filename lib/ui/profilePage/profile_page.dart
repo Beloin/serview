@@ -21,10 +21,6 @@ class _ProfilePageState extends State<ProfilePage> {
         title: Text("Configurações"),
         backgroundColor: Colors.lightBlue,
         centerTitle: true,
-        leading: IconButton(
-          icon: Icon(Icons.keyboard_backspace),
-          onPressed: () {},
-        ),
       ),
       body: SingleChildScrollView(
         child:Column(
@@ -151,14 +147,7 @@ class _ProfilePageState extends State<ProfilePage> {
             Container(
               child: ExpansionTile(
                 title: Text("Profissão", style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, color: Color.fromARGB(150, 0, 0, 0))),
-                children: <Widget>[
-                  RaisedButton(
-                    onPressed: () {},
-                    child: Text("Salvar Alterações"),
-                    color: Colors.lightBlue[200],
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-                  ),
-                ],
+                children: <Widget>[],
               ),
             ),
             Container(
@@ -169,17 +158,21 @@ class _ProfilePageState extends State<ProfilePage> {
                     padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 5.0),
                     child: Builders.buildFieldText(
                       colorText: Colors.black,
-                      label: "Digite Aqui Sua Descrição",
+                      label: "Digite Aqui Sua Descrição(300 caracteres)",
                     ),
-                  ),
-                  RaisedButton(
-                    onPressed: () {},
-                    child: Text("Salvar Alterações"),
-                    color: Colors.lightBlue[200],
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
                   ),
                 ],
               ),
+            ),
+            Column(
+              children: <Widget>[
+                RaisedButton(
+                  onPressed: () {},
+                  child: Text("Salvar Alterações"),
+                  color: Colors.lightBlue[200],
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                ),
+              ],
             ),
           ],
         ),

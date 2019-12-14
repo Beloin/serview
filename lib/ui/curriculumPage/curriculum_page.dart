@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:serview/models/user_model.dart';
+import 'package:serview/ui/profilePage/profile_page.dart';
 
 class CurriculumPage extends StatefulWidget {
   @override
@@ -9,7 +10,7 @@ class CurriculumPage extends StatefulWidget {
 
 class StarDisplay extends StatelessWidget {
   final int value;
-  const StarDisplay({Key key, this.value = 0})
+  const StarDisplay({Key key, this.value = 3})
       : assert(value != null),
         super(key: key);
   @override
@@ -19,6 +20,7 @@ class StarDisplay extends StatelessWidget {
       children: List.generate(5, (index) {
         return Icon(
           index < value ? Icons.star : Icons.star_border,
+          color: Color(0xFFFFC107),
         );
       }),
     );
@@ -67,7 +69,10 @@ class _CurriculumPageState extends State<CurriculumPage> {
                 ),
                 IconButton(
                   icon: Icon(Icons.person),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => ProfilePage()));
+                  },
                 ),
               ],
             ),
