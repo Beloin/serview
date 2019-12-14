@@ -27,14 +27,14 @@ class _SignUpTabState extends State<SignUpTab> {
       builder: (context, child, model) {
         if (model.isLoading)
           return Scaffold(
-            key: _scaffoldKey,
+              key: _scaffoldKey,
               body: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-            Center(
-              child: CircularProgressIndicator(),
-            )
-          ]));
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Center(
+                      child: CircularProgressIndicator(),
+                    )
+                  ]));
         return Scaffold(
           key: _scaffoldKey,
           body: SingleChildScrollView(
@@ -175,7 +175,6 @@ class _SignUpTabState extends State<SignUpTab> {
                           Map<String, dynamic> publicUser = {
                             "name": _nameController.text,
                             "email": _emailController.text,
-                            "rate": 3,
                             'curriculum': userCurriculum,
                           };
                           model.signUp(

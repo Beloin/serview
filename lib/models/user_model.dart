@@ -12,7 +12,6 @@ class UserModel extends Model {
 
   Map<String, dynamic> userData = Map();
   Map<String, dynamic> userCurriculum = Map();
-  Map<String, dynamic> publicUser = Map();
 
   Map<String, dynamic> testUserData = Map();
   Map<String, dynamic> testUserCurriculum = Map();
@@ -40,7 +39,7 @@ class UserModel extends Model {
     notifyListeners();
 
     // (Não) Trocar a forma de salvar Currículo e Users com o 'email'
-
+    
     // Verificar como fazer um usuário público para adicionar as informações capturadas
 
     _auth
@@ -114,18 +113,10 @@ class UserModel extends Model {
   }
 
   Future<Null> _savePublicUser(Map<String, dynamic> publicUser) async {
-    DocumentSnapshot docPublicUser = await Firestore.instance
-        .collection('publicUsers')
-        .document('publicList')
-        .get();
-    var publicList = docPublicUser.data;
-    var temp = new List.from(publicList['public']);
-    temp.add(publicUser);
-    publicList['public'] = temp;
     await Firestore.instance
         .collection("publicUsers")
-        .document('publicList')
-        .setData(publicList);
+        .document(firebaseUser.uid)
+        .setData(publicUser);
   }
 
   void signOut() async {
@@ -150,11 +141,6 @@ class UserModel extends Model {
             .document(firebaseUser.uid)
             .get();
         userCurriculum = docUserCur.data;
-        DocumentSnapshot docPublicUser = await Firestore.instance
-            .collection("publicuser")
-            .document('publicList')
-            .get();
-        publicUser = docPublicUser.data;
       }
       notifyListeners();
     }

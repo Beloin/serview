@@ -11,6 +11,6 @@ void main() => runApp(
       ScopedModel<UserModel>(
           model: UserModel(),
           child: MaterialApp(
-            home: SignPage()
+            home: HomePage()
           )),
     );

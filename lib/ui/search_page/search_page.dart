@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
+import 'package:serview/models/publicUser.dart';
 import 'package:serview/models/user_model.dart';
 import 'package:serview/ui/constructors/builders.dart';
 
@@ -34,17 +35,25 @@ class _SearchPageState extends State<SearchPage> {
                   colorText: Colors.black,
                 )),
             Text(search),
+            IconButton(
+              icon: Icon(Icons.desktop_mac),
+              onPressed: () async {
+                var a = PublicUser();
+                a.loadPublicUserByEmail2("sennah.bs@gmail.com");
+                await Future.delayed(Duration(seconds: 2));
+                print(a.publicUserData["name"]);
+              },
+            ),
             //Talvez coloque uma Row para colocar um Expanded para ficar bonito
             Row(
               children: <Widget>[
                 Expanded(
                     child: ListTile(
                   leading: Icon(Icons.person_pin_circle),
-                  title: Text('Corno que dorme cedo'),
-                  subtitle: Text('Acorda na gaiola'),
+                  title: Text("AaAaAaA"),
+                  subtitle: Text("Amanhã vou parar na gaiola"),
                   trailing: Icon(Icons.pets),
-                )
-                )
+                ))
               ],
             )
           ],
