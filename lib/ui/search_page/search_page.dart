@@ -19,6 +19,9 @@ class _SearchPageState extends State<SearchPage> {
 
   @override
   Widget build(BuildContext context) {
+    if (search != null || search != "") {
+      
+    }
     return Scaffold(
       appBar: AppBar(
         title: Text("Pesquisar"),
@@ -34,26 +37,30 @@ class _SearchPageState extends State<SearchPage> {
                   label: "Escreva aqui",
                   colorText: Colors.black,
                 )),
-            Text(search),
+            //Text(search),
             IconButton(
               icon: Icon(Icons.desktop_mac),
               onPressed: () async {
                 var a = PublicUser();
-                a.loadPublicUserByEmail2("sennah.bs@gmail.com");
+                a.loadLimitedPublicUsers(1);
                 await Future.delayed(Duration(seconds: 2));
-                print(a.publicUserData["name"]);
+                print(a.allUsersByNumFornecedor[0]["name"]);
               },
             ),
             //Talvez coloque uma Row para colocar um Expanded para ficar bonito
             Row(
               children: <Widget>[
-                Expanded(
-                    child: ListTile(
-                  leading: Icon(Icons.person_pin_circle),
-                  title: Text("AaAaAaA"),
-                  subtitle: Text("Amanhã vou parar na gaiola"),
-                  trailing: Icon(Icons.pets),
-                ))
+                Flexible(
+                  child: ListView.builder(
+                    scrollDirection: Axis.vertical,
+                    shrinkWrap: true,
+                    itemCount: 3,
+                    itemBuilder: (context, index) {
+                      return Builders.buildListFavorite("profession", "name",
+                          "https://rd1.com.br/wp-content/uploads/2019/09/20190908-rd1-alexandre-frota.png");
+                    },
+                  ),
+                ),
               ],
             )
           ],

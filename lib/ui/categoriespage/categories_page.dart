@@ -60,7 +60,7 @@ class _CategoriesPageState extends State<CategoriesPage> {
                       decoration: BoxDecoration(
                           border: Border(
                         bottom: BorderSide(
-                          color: Colors.blueAccent,
+                          color: Colors.blueGrey,
                         ),
                       )),
                       child: ListTile(

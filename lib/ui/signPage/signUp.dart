@@ -175,6 +175,7 @@ class _SignUpTabState extends State<SignUpTab> {
                           Map<String, dynamic> publicUser = {
                             "name": _nameController.text,
                             "email": _emailController.text,
+                            "fornecedor": false,
                             'curriculum': userCurriculum,
                           };
                           model.signUp(
