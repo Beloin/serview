@@ -12,6 +12,7 @@ class UserModel extends Model {
 
   Map<String, dynamic> userData = Map();
   Map<String, dynamic> userCurriculum = Map();
+  Map<String, dynamic> publicUserData = Map();
 
   Map<String, dynamic> testUserData = Map();
   Map<String, dynamic> testUserCurriculum = Map();
@@ -37,10 +38,6 @@ class UserModel extends Model {
       @required VoidCallback onFail}) {
     isLoading = true;
     notifyListeners();
-
-    // (Não) Trocar a forma de salvar Currículo e Users com o 'email'
-    
-    // Verificar como fazer um usuário público para adicionar as informações capturadas
 
     _auth
         .createUserWithEmailAndPassword(
@@ -113,6 +110,7 @@ class UserModel extends Model {
   }
 
   Future<Null> _savePublicUser(Map<String, dynamic> publicUser) async {
+    this.publicUserData = publicUser;
     await Firestore.instance
         .collection("publicUsers")
         .document(firebaseUser.uid)
@@ -141,6 +139,11 @@ class UserModel extends Model {
             .document(firebaseUser.uid)
             .get();
         userCurriculum = docUserCur.data;
+        DocumentSnapshot docPublicUser = await Firestore.instance
+            .collection("publicUsers")
+            .document(firebaseUser.uid)
+            .get();
+        publicUserData = docPublicUser.data;
       }
       notifyListeners();
     }
@@ -156,5 +159,41 @@ class UserModel extends Model {
         .get();
     testUserCurriculum = docUserCur.data;
     notifyListeners();
+  }
+
+  Future saveModifiedUserData(
+      {Map<String, dynamic> userData,
+      VoidCallback onError,
+      VoidCallback onSuccess}) async {
+    await _saveUserData(userData).catchError((e) {
+      onError();
+    });
+    publicUserData["name"] = userData["name"];
+    await _savePublicUser(publicUserData).catchError((e) {
+      onError();
+    });
+    userCurriculum["name"] = userData["name"];
+    await _saveUserCurriculum(userCurriculum).catchError((e) {
+      onError();
+    });
+    onSuccess();
+  }
+
+  saveModifiedUserProfession(
+      {Map<String, dynamic> publicUserData,
+      VoidCallback onError,
+      VoidCallback onSucess}) async {
+    await _savePublicUser(publicUserData).catchError((e) {
+      onError();
+    });
+    userData["fornecedor"] = publicUserData["fornecedor"];
+    userCurriculum["profession"] = publicUserData["curriculum"]["profession"];
+    await _saveUserData(userData).catchError((e) {
+      onError();
+    });
+    await _saveUserCurriculum(userCurriculum).catchError((e) {
+      onError();
+    });
+    onSucess();
   }
 }
