@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:scoped_model/scoped_model.dart';
+import 'package:serview/models/user_model.dart';
 import 'package:serview/ui/constructors/builders.dart';
 
 final String url =
@@ -16,7 +18,8 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return ScopedModelDescendant<UserModel>(builder: (context, child, model){
+      return Scaffold(
       appBar: AppBar(
         title: Text("Configurações"),
         backgroundColor: Colors.lightBlue,
@@ -63,7 +66,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Text("Nome", style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, color: Color.fromARGB(150, 0, 0, 0))),
-                  Text(name, style: TextStyle(fontSize: 18.0)),
+                  Text(model.userData["name"], style: TextStyle(fontSize: 18.0)),
                 ],
               ),
             ),
@@ -74,7 +77,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Text("Email", style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, color: Color.fromARGB(150, 0, 0, 0))),
-                  Text(email, style: TextStyle(fontSize: 18.0)),
+                  Text(model.userData["email"], style: TextStyle(fontSize: 18.0)),
                 ],
               ),
             ),
@@ -178,5 +181,6 @@ class _ProfilePageState extends State<ProfilePage> {
         ),
      ),
     );
+    },);
   }
 }
