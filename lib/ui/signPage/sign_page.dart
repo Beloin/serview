@@ -25,6 +25,7 @@ class _SignPageState extends State<SignPage> {
         length: 2,
         child: Scaffold(
           appBar: AppBar(
+            automaticallyImplyLeading: false,
             backgroundColor: Colors.lightBlue,
             title: Text("Serview"),
             centerTitle: true,
