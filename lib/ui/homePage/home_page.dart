@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:serview/models/user_model.dart';
 import 'package:serview/ui/categoriespage/categories_page.dart';
+import 'package:serview/ui/chatPage/chat_page.dart';
 import 'package:serview/ui/favoritePage/favorite_page.dart';
 import 'package:serview/ui/profilePage/profile_page.dart';
 import 'package:serview/ui/signPage/sign_page.dart';
@@ -21,6 +22,13 @@ class _HomePageState extends State<HomePage> {
             title: Text('Serview'),
             backgroundColor: Colors.lightBlue,
             centerTitle: true,
+            leading: IconButton(
+                icon: Icon(Icons.menu),
+                onPressed: () {
+                  Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => CategoriesPage()));
+                },
+              ),
             actions: <Widget>[
               IconButton(icon: Icon(Icons.favorite),
               onPressed: () {
@@ -35,10 +43,10 @@ class _HomePageState extends State<HomePage> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               IconButton(
-                icon: Icon(Icons.menu),
+                icon: Icon(Icons.chat),
                 onPressed: () {
                   Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => CategoriesPage()));
+                        MaterialPageRoute(builder: (context) => ChatPage()));
                 },
               ),
               IconButton(
