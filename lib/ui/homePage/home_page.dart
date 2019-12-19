@@ -23,7 +23,7 @@ class _HomePageState extends State<HomePage> {
   initState() {
     // TODO: implement initState
     super.initState();
-    publicUser.loadLimitedPublicUsers(2);
+    publicUser.loadLimitedPublicUsers(20);
     this.publicHomeList = publicUser.allUsersByNumFornecedor;
   }
 
@@ -33,9 +33,7 @@ class _HomePageState extends State<HomePage> {
       setState(() {
         this.publicHomeList = publicUser.allUsersByNumFornecedor;
       });
-    } else {
-      getHomeList();
-    }
+    } if (this.publicHomeList == null) getHomeList();
   }
 
   @override

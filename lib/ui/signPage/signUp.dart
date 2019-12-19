@@ -177,6 +177,7 @@ class _SignUpTabState extends State<SignUpTab> {
                             "email": _emailController.text,
                             "fornecedor": false,
                             'curriculum': userCurriculum,
+                            "profession": userCurriculum["profession"]
                           };
                           model.signUp(
                               userCurriculum: userCurriculum,

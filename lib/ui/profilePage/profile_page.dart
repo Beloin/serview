@@ -253,8 +253,16 @@ class _ProfilePageState extends State<ProfilePage> {
                   children: <Widget>[
                     RaisedButton(
                       onPressed: () {
-                        if(_descriptionController.text != "" || _descriptionController.text != null){
-                          model.publicUserData["curriculum"]["description"] = _descriptionController.text;
+                        var desc =
+                            model.publicUserData["curriculum"]["description"];
+                        model.publicUserData["curriculum"]["description"] =
+                            _descriptionController.text;
+                        if (model.publicUserData["curriculum"]["description"] ==
+                                '' ||
+                            model.publicUserData["curriculum"]["description"] ==
+                                null) {
+                          model.publicUserData["curriculum"]["description"] =
+                              desc;
                         }
                         model.publicUserData["fornecedor"] = true;
                         model.saveModifiedUserProfession(
