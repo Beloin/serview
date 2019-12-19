@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:serview/ui/curriculumPage/curriculum_page.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 final String url =
     "https://rd1.com.br/wp-content/uploads/2019/09/20190908-rd1-alexandre-frota.png";
