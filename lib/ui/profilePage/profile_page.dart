@@ -24,6 +24,7 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     return ScopedModelDescendant<UserModel>(
       builder: (context, child, model) {
+        
         var _professionsList =
             List<String>.from(model.userProf.professions["professions"]);
 
@@ -34,13 +35,14 @@ class _ProfilePageState extends State<ProfilePage> {
             backgroundColor: Colors.lightBlue,
             centerTitle: true,
             actions: <Widget>[
-              IconButton(icon: Icon(Icons.exit_to_app),onPressed: (){
-                model.signOut();
-                Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => SignPage()));
-              },)
+              IconButton(
+                icon: Icon(Icons.exit_to_app),
+                onPressed: () {
+                  model.signOut();
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => SignPage()));
+                },
+              )
             ],
           ),
           body: SingleChildScrollView(

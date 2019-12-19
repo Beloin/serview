@@ -189,6 +189,16 @@ class _CurriculumPageState extends State<CurriculumPage> {
                   child: Text(publicUserData["curriculum"]["description"],
                       style: TextStyle(fontSize: 16)),
                 ),
+                Container(
+                  padding: EdgeInsets.only(top: 25.0, bottom: 5.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      Text("Número Para Contato:", style: TextStyle(fontSize: 27)),
+                      Text(publicUserData["number"], style: TextStyle(fontSize: 20),)
+                    ],
+                  ),
+                ),
               ],
             ),
           ],

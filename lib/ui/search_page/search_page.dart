@@ -17,7 +17,7 @@ class _SearchPageState extends State<SearchPage> {
   final String search;
 
   _SearchPageState({this.search});
-  final _scaffoldKey = GlobalKey<ScaffoldState>();
+  final _scaffoldKeyy = GlobalKey<ScaffoldState>();
 
   String search1;
   var publicUser = PublicUser();
@@ -50,7 +50,7 @@ class _SearchPageState extends State<SearchPage> {
     //Lembrando que "search" é a categoria que essa Page recebe
     if (search == null || search == "") {
       return Scaffold(
-          key: _scaffoldKey,
+          key: _scaffoldKeyy,
           appBar: AppBar(
             title: Text("Pesquisar"),
             centerTitle: true,
@@ -104,13 +104,14 @@ class _SearchPageState extends State<SearchPage> {
       if (this.publicUser.allUsersByProfession == null) {
         getSearchProfessions(search);
         return Scaffold(
+          key: _scaffoldKeyy,
           body: Center(
             child: CircularProgressIndicator(),
           ),
         );
       }
       return Scaffold(
-        key: _scaffoldKey,
+        key: _scaffoldKeyy,
         appBar: AppBar(
           title: Text("Pesquisar"),
           centerTitle: true,
@@ -130,12 +131,13 @@ class _SearchPageState extends State<SearchPage> {
                       itemCount: publicUser.allUsersByProfession.length,
                       itemBuilder: (context, index) {
                         return GestureDetector(
-                          onTap: (){
+                          onTap: () {
                             Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => CurriculumPage(
-                                      publicUser.allUsersByProfession[index]["email"])));
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => CurriculumPage(
+                                        publicUser.allUsersByProfession[index]
+                                            ["email"])));
                           },
                           child: Builders.publicUserListTile(
                               rate: publicUser.allUsersByProfession[index]
@@ -160,10 +162,10 @@ class _SearchPageState extends State<SearchPage> {
   }
 
   onError() {
-    final snackBar = SnackBar(
-      content: Text('Falha ao encontrar o usuário'),
+    _scaffoldKeyy.currentState.showSnackBar(SnackBar(
+      content: Text('Usuários não encontrados'),
       backgroundColor: Colors.redAccent,
-    );
-    _scaffoldKey.currentState.showSnackBar(snackBar);
+      duration: Duration(seconds: 2),
+    ));
   }
 }
