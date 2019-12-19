@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:serview/models/professions.dart';
@@ -5,6 +8,7 @@ import 'package:serview/models/user_model.dart';
 import 'package:serview/ui/constructors/builders.dart';
 import 'package:serview/ui/homePage/home_page.dart';
 import 'dart:convert';
+import 'package:image_picker/image_picker.dart';
 
 class SignUpTab extends StatefulWidget {
   @override
@@ -61,7 +65,14 @@ class _SignUpTabState extends State<SignUpTab> {
                           child: Icon(Icons.add_a_photo),
                         )),
                   ),
-                  onTap: () {},
+                  onTap: () async {
+                    File imgFile = await ImagePicker.pickImage(source: ImageSource.gallery);
+                    if(imgFile == null) return;
+                    StorageUploadTask task = FirebaseStorage.instance.ref().child("imgPerfil").putFile(imgFile);
+
+                  (await task.future).downloadUrl.toString();
+
+                  },
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -163,6 +174,7 @@ class _SignUpTabState extends State<SignUpTab> {
                             "name": _nameController.text,
                             "email": _emailController.text,
                             "fornecedor": false,
+                            "urlFoto" :
                           };
                           //Salvo já currículo só para teste, apagar depois
                           Map<String, dynamic> userCurriculum = {
