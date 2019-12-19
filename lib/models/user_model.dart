@@ -169,6 +169,7 @@ class UserModel extends Model {
       onError();
     });
     publicUserData["name"] = userData["name"];
+    publicUserData["curriculum"]["name"] = userData["name"];
     await _savePublicUser(publicUserData).catchError((e) {
       onError();
     });
@@ -188,6 +189,7 @@ class UserModel extends Model {
     });
     userData["fornecedor"] = publicUserData["fornecedor"];
     userCurriculum["profession"] = publicUserData["curriculum"]["profession"];
+    userCurriculum["profession"] = publicUserData["profession"];
     await _saveUserData(userData).catchError((e) {
       onError();
     });

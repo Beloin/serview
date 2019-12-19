@@ -11,6 +11,7 @@ class PublicUser {
   Map<String, dynamic> allPublicUsers = Map();
   List<Map<String, dynamic>> allUsersByProfession;
   List<Map<String, dynamic>> allUsersByNumFornecedor;
+  List<Map<String, dynamic>> allUsersByName;
 
   // void loadPublicUser(String email) {
   //   Firestore.instance
@@ -30,6 +31,13 @@ class PublicUser {
   Future loadLimitedPublicUsers(num) async{
     _getLimitedCollection(num);
   }
+  Future loadLimitedPublicUsersByName(int num, String name) async{
+    _getLimitedCollectionByName(num, name);
+  }
+    Future loadLimitedPublicUsersByProfession(int num, String name) async{
+    _getCollectionByProfession(name, num);
+  }
+  
 
   Future<Map<String, dynamic>> _getCollectionByEmail(String email) async {
     List<DocumentSnapshot> templist;
@@ -49,14 +57,34 @@ class PublicUser {
     return list[0];
   }
 
+  Future<List<Map<String, dynamic>>> _getLimitedCollectionByName(
+      int num, String name) async {
+    List<DocumentSnapshot> templist;
+    List<Map<String, dynamic>> list = new List();
+    CollectionReference collectionRef =
+        Firestore.instance.collection("publicUsers");
+    QuerySnapshot collectionSnapshot =
+        await collectionRef.where("name", isEqualTo: name).limit(num).getDocuments();
+
+    templist = collectionSnapshot.documents; // <--- ERROR
+
+    list = templist.map((DocumentSnapshot docSnapshot) {
+      return docSnapshot.data;
+    }).toList();
+
+    allUsersByName = list;
+    print(allUsersByName.length);
+    return list;
+  }
+
   Future<List<Map<String, dynamic>>> _getCollectionByProfession(
-      String profession) async {
+      String profession, int num) async {
     List<DocumentSnapshot> templist;
     List<Map<String, dynamic>> list = new List();
     CollectionReference collectionRef =
         Firestore.instance.collection("publicUsers");
     QuerySnapshot collectionSnapshot = await collectionRef
-        .where("profession", isEqualTo: profession)
+        .where("profession", isEqualTo: profession).limit(num)
         .getDocuments();
 
     templist = collectionSnapshot.documents; // <--- ERROR
@@ -66,6 +94,7 @@ class PublicUser {
     }).toList();
 
     allUsersByProfession = list;
+    print(allUsersByProfession.length);
     return list;
   }
 

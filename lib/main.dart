@@ -14,6 +14,7 @@ void main() => runApp(
       ScopedModel<UserModel>(
           model: UserModel(),
           child: MaterialApp(
+            debugShowCheckedModeBanner: false,
             home: HomePage()
           )),
     );

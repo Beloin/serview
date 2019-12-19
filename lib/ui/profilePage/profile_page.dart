@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:serview/models/user_model.dart';
 import 'package:serview/ui/constructors/builders.dart';
+import 'package:serview/ui/signPage/sign_page.dart';
 
 final String url =
     "https://rd1.com.br/wp-content/uploads/2019/09/20190908-rd1-alexandre-frota.png";
@@ -32,6 +33,16 @@ class _ProfilePageState extends State<ProfilePage> {
             title: Text("Configurações"),
             backgroundColor: Colors.lightBlue,
             centerTitle: true,
+            actions: <Widget>[
+              IconButton(
+                icon: Icon(Icons.exit_to_app),
+                onPressed: () {
+                  model.signOut();
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => SignPage()));
+                },
+              )
+            ],
           ),
           body: SingleChildScrollView(
             child: Column(
@@ -253,8 +264,16 @@ class _ProfilePageState extends State<ProfilePage> {
                   children: <Widget>[
                     RaisedButton(
                       onPressed: () {
-                        if(_descriptionController.text != "" || _descriptionController.text != null){
-                          model.publicUserData["curriculum"]["description"] = _descriptionController.text;
+                        var desc =
+                            model.publicUserData["curriculum"]["description"];
+                        model.publicUserData["curriculum"]["description"] =
+                            _descriptionController.text;
+                        if (model.publicUserData["curriculum"]["description"] ==
+                                '' ||
+                            model.publicUserData["curriculum"]["description"] ==
+                                null) {
+                          model.publicUserData["curriculum"]["description"] =
+                              desc;
                         }
                         model.publicUserData["fornecedor"] = true;
                         model.saveModifiedUserProfession(
