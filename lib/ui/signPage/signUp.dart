@@ -66,11 +66,11 @@ class _SignUpTabState extends State<SignUpTab> {
                         )),
                   ),
                   onTap: () async {
-                    File imgFile = await ImagePicker.pickImage(source: ImageSource.gallery);
-                    if(imgFile == null) return;
-                    StorageUploadTask task = FirebaseStorage.instance.ref().child("imgPerfil").putFile(imgFile);
+                  //   File imgFile = await ImagePicker.pickImage(source: ImageSource.gallery);
+                  //   if(imgFile == null) return;
+                  //   StorageUploadTask task = FirebaseStorage.instance.ref().child("imgPerfil").putFile(imgFile);
 
-                  (await task.future).downloadUrl.toString();
+                  // (await task.future).downloadUrl.toString();
 
                   },
                 ),
@@ -174,7 +174,7 @@ class _SignUpTabState extends State<SignUpTab> {
                             "name": _nameController.text,
                             "email": _emailController.text,
                             "fornecedor": false,
-                            "urlFoto" :
+                            "urlFoto" : 'url'
                           };
                           //Salvo já currículo só para teste, apagar depois
                           Map<String, dynamic> userCurriculum = {

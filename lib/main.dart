@@ -18,10 +18,7 @@ runApp(
       ScopedModel<UserModel>(
           model: UserModel(),
           child: MaterialApp(
-<<<<<<< HEAD
             debugShowCheckedModeBanner: false,
-=======
->>>>>>> d04b8208aa4ea4228af5237d7b8d0255b8896dd8
             home: SignPage()
           )),
     );
