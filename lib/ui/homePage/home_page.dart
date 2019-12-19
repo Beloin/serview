@@ -33,31 +33,25 @@ class _HomePageState extends State<HomePage> {
       setState(() {
         this.publicHomeList = publicUser.allUsersByNumFornecedor;
       });
-    } if (this.publicHomeList == null) getHomeList();
+    }
+    if (this.publicHomeList == null) getHomeList();
   }
 
   @override
   Widget build(BuildContext context) {
-    if (this.publicHomeList == null) {
-      getHomeList();
-      return Scaffold(
-        body: Center(
-          child: CircularProgressIndicator(),
-        ),
-      );
-    }
     return ScopedModelDescendant<UserModel>(
       builder: (context, child, model) {
         //Fazer forma de mandar para SignPage quando não logado.
         // model.firebaseUser = null;
         // if (model.firebaseUser == null) {
-        //    Navigator.push(
-        //     context, MaterialPageRoute(builder: (context) => SignPage()));
         // }
-        model.isLoggedIn();
-        if (!model.logged) {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => SignPage()));
+        if (this.publicHomeList == null) {
+          getHomeList();
+          return Scaffold(
+            body: Center(
+              child: CircularProgressIndicator(),
+            ),
+          );
         }
         return Scaffold(
             appBar: AppBar(
