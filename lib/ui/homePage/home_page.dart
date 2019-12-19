@@ -56,6 +56,11 @@ class _HomePageState extends State<HomePage> {
         //    Navigator.push(
         //     context, MaterialPageRoute(builder: (context) => SignPage()));
         // }
+        model.isLoggedIn();
+        if (!model.logged) {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => SignPage()));
+        }
         return Scaffold(
             appBar: AppBar(
               automaticallyImplyLeading: false,
