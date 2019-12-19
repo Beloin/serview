@@ -12,14 +12,15 @@ class UserModel extends Model {
 
   Map<String, dynamic> userData = Map();
   Map<String, dynamic> userCurriculum = Map();
-  
+  Map<String, dynamic> publicUserData = Map();
+
   Map<String, dynamic> testUserData = Map();
   Map<String, dynamic> testUserCurriculum = Map();
 
   Professions userProf = Professions();
 
   bool isLoading = false;
-  bool logged = true;
+  bool logged = false;
 
   @override
   void addListener(listener) {
@@ -31,6 +32,7 @@ class UserModel extends Model {
   void signUp(
       {@required Map<String, dynamic> userData,
       @required Map<String, dynamic> userCurriculum,
+      @required Map<String, dynamic> publicUser,
       @required String pass,
       @required VoidCallback onSuccess,
       @required VoidCallback onFail}) {
@@ -42,8 +44,10 @@ class UserModel extends Model {
             email: userData["email"], password: pass)
         .then((user) async {
       firebaseUser = user.user;
+      //var _email = userData['email'];
       await _saveUserData(userData);
       await _saveUserCurriculum(userCurriculum);
+      await _savePublicUser(publicUser);
       onSuccess();
       isLoading = false;
       notifyListeners();
@@ -105,6 +109,14 @@ class UserModel extends Model {
         .setData(userCurriculum);
   }
 
+  Future<Null> _savePublicUser(Map<String, dynamic> publicUser) async {
+    this.publicUserData = publicUser;
+    await Firestore.instance
+        .collection("publicUsers")
+        .document(firebaseUser.uid)
+        .setData(publicUser);
+  }
+
   void signOut() async {
     await _auth.signOut();
     userData = Map();
@@ -127,6 +139,11 @@ class UserModel extends Model {
             .document(firebaseUser.uid)
             .get();
         userCurriculum = docUserCur.data;
+        DocumentSnapshot docPublicUser = await Firestore.instance
+            .collection("publicUsers")
+            .document(firebaseUser.uid)
+            .get();
+        publicUserData = docPublicUser.data;
       }
       notifyListeners();
     }
@@ -142,5 +159,43 @@ class UserModel extends Model {
         .get();
     testUserCurriculum = docUserCur.data;
     notifyListeners();
+  }
+
+  Future saveModifiedUserData(
+      {Map<String, dynamic> userData,
+      VoidCallback onError,
+      VoidCallback onSuccess}) async {
+    await _saveUserData(userData).catchError((e) {
+      onError();
+    });
+    publicUserData["name"] = userData["name"];
+    publicUserData["curriculum"]["name"] = userData["name"];
+    await _savePublicUser(publicUserData).catchError((e) {
+      onError();
+    });
+    userCurriculum["name"] = userData["name"];
+    await _saveUserCurriculum(userCurriculum).catchError((e) {
+      onError();
+    });
+    onSuccess();
+  }
+
+  saveModifiedUserProfession(
+      {Map<String, dynamic> publicUserData,
+      VoidCallback onError,
+      VoidCallback onSucess}) async {
+    await _savePublicUser(publicUserData).catchError((e) {
+      onError();
+    });
+    userData["fornecedor"] = publicUserData["fornecedor"];
+    userCurriculum["profession"] = publicUserData["curriculum"]["profession"];
+    userCurriculum["profession"] = publicUserData["profession"];
+    await _saveUserData(userData).catchError((e) {
+      onError();
+    });
+    await _saveUserCurriculum(userCurriculum).catchError((e) {
+      onError();
+    });
+    onSucess();
   }
 }
