@@ -24,6 +24,7 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     return ScopedModelDescendant<UserModel>(
       builder: (context, child, model) {
+        
         var _professionsList =
             List<String>.from(model.userProf.professions["professions"]);
 

@@ -198,7 +198,6 @@ class _SignUpTabState extends State<SignUpTab> {
                             "email": _emailController.text,
                             "number": _numController.text,
                             "fornecedor": false,
-                            "urlFoto": 'url'
                           };
                           //Salvo já currículo só para teste, apagar depois
                           Map<String, dynamic> userCurriculum = {
