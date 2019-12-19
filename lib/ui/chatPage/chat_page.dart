@@ -34,7 +34,7 @@ class _ChatPageState extends State<ChatPage> {
   }
   buildListFavorite(){
     return GestureDetector(
-      onTap: (){Navigator.push(context,MaterialPageRoute(builder: (context) => CurriculumPage()));},
+      //onTap: (){Navigator.push(context,MaterialPageRoute(builder: (context) => CurriculumPage()));},
       child:Container(  
         child: ListTile(
           leading: Container(

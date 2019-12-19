@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:serview/ui/curriculumPage/curriculum_page.dart';
 
 class Builders {
   static Widget buildFieldText(
@@ -44,19 +45,85 @@ class Builders {
             icon: Icon(Icons.send)));
   }
 
-  static Widget listTilePerfil({@required String usrName, @required usrProf}) {
-    return ListTile(
-        leading: Container(
-          width: 125.0,
-          height: 125.0,
+  static Widget buildListFavorite(profession, name, url) {
+    return Container(
+      padding: EdgeInsets.only(left: 5.0, top: 5.0, bottom: 20.0),
+      child: Row(
+        children: <Widget>[
+          Container(
+            padding: EdgeInsets.only(right: 20.0),
+            width: 80,
+            height: 80,
+            decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                image: DecorationImage(
+                    fit: BoxFit.fitHeight, image: NetworkImage(url))),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: <Widget>[
+              Column(
+                children: <Widget>[
+                  Row(
+                    children: <Widget>[
+                      Text(name, style: TextStyle(fontSize: 18)),
+                    ],
+                  ),
+                  Row(
+                    children: <Widget>[
+                      Text(profession, style: TextStyle(fontSize: 18)),
+                    ],
+                  ),
+                  Row(
+                    children: <Widget>[
+                      StarDisplay(),
+                    ],
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  static Widget userListTile(String url) {
+    return Row(
+      children: <Widget>[
+        Container(
+          padding: EdgeInsets.all(10.0),
+          width: 80,
+          height: 80,
           decoration: BoxDecoration(
-              border: Border.all(color: Colors.blue, width: 3.0),
               shape: BoxShape.circle,
               image: DecorationImage(
-                  fit: BoxFit.fitHeight,
-                  image: AssetImage("assets/profile_pic.png"))),
+                  fit: BoxFit.fitHeight, image: NetworkImage(url))),
         ),
-        title: Text(usrName),
-        subtitle: Text(usrProf));
+      ],
+    );
+  }
+
+  static Widget publicUserListTile(
+      {@required String name,
+      @required String profession,
+      @required String url,
+      int rate = 3}) {
+    return ListTile(
+      leading: Container(
+        padding: EdgeInsets.all(10.0),
+        width: 50,
+        height: 50,
+        decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            image: DecorationImage(
+                fit: BoxFit.fitHeight, image: NetworkImage(url))),
+      ),
+      title: Text(name),
+      subtitle: Text(profession),
+      trailing: StarDisplay(
+        value: rate,
+      ),
+    );
   }
 }

@@ -57,6 +57,7 @@ class _FavoritePageState extends State<FavoritePage> {
       body:ListView.builder(
         itemCount: 10,
         itemBuilder: (context,index) {
+          //Modificar e colocar o ListTile
           return buildListFavorite();
         },
       ),
@@ -64,7 +65,7 @@ class _FavoritePageState extends State<FavoritePage> {
   }
   buildListFavorite(){
     return GestureDetector(
-      onTap: (){Navigator.push(context,MaterialPageRoute(builder: (context) => CurriculumPage()));},
+      onTap: (){Navigator.push(context,MaterialPageRoute(builder: (context) => CurriculumPage("email")));},
       child:Container(  
         padding: EdgeInsets.only(left: 5.0,top: 5.0,bottom: 20.0),
         child:Row(
