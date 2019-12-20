@@ -9,6 +9,7 @@ import 'package:serview/ui/favoritePage/favorite_page.dart';
 import 'package:serview/ui/profilePage/profile_page.dart';
 import 'package:serview/ui/signPage/sign_page.dart';
 import 'package:serview/ui/search_page/search_page.dart';
+import 'package:serview/ui/chatPage/chat_page.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -59,6 +60,15 @@ class _HomePageState extends State<HomePage> {
               title: Text('Serview'),
               backgroundColor: Colors.lightBlue,
               centerTitle: true,
+              leading: IconButton(
+                icon: Icon(Icons.menu),
+                onPressed: (){
+                  Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => CategoriesPage()));
+                },
+              ),
               actions: <Widget>[
                 IconButton(
                   icon: Icon(Icons.favorite),
@@ -77,12 +87,12 @@ class _HomePageState extends State<HomePage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   IconButton(
-                    icon: Icon(Icons.menu),
+                    icon: Icon(Icons.chat),
                     onPressed: () {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => CategoriesPage()));
+                              builder: (context) => ChatPage()));
                     },
                   ),
                   IconButton(

@@ -3,6 +3,7 @@ import 'package:scoped_model/scoped_model.dart';
 import 'package:serview/models/publicUser.dart';
 import 'package:serview/models/user_model.dart';
 import 'package:serview/ui/categoriespage/categories_page.dart';
+import 'package:serview/ui/chatPage/chat_page.dart';
 import 'package:serview/ui/profilePage/profile_page.dart';
 
 class CurriculumPage extends StatefulWidget {
@@ -103,7 +104,10 @@ class _CurriculumPageState extends State<CurriculumPage> {
             ),
             IconButton(
               icon: Icon(Icons.chat),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => ChatPage()));
+              },
             ),
             IconButton(
               icon: Icon(Icons.person),
@@ -116,7 +120,7 @@ class _CurriculumPageState extends State<CurriculumPage> {
         ),
       ),
       body: Container(
-        padding: EdgeInsets.all(15.0),
+        padding: EdgeInsets.only(left: 15.0,top: 15.0,bottom: 15.0,right: 15.0),
         child: Column(
           children: <Widget>[
             Row(
@@ -191,11 +195,15 @@ class _CurriculumPageState extends State<CurriculumPage> {
                 ),
                 Container(
                   padding: EdgeInsets.only(top: 25.0, bottom: 5.0),
-                  child: Row(
+                  child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
-                      Text("Número Para Contato:", style: TextStyle(fontSize: 27)),
-                      Text(publicUserData["number"], style: TextStyle(fontSize: 20),)
+                      Column(
+                        children: <Widget>[
+                          Text("Número Para Contato:", style: TextStyle(fontSize: 27)),
+                          Text(publicUserData["number"], style: TextStyle(fontSize: 20),)
+                        ],
+                      ),
                     ],
                   ),
                 ),
