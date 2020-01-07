@@ -3,6 +3,7 @@ import 'package:scoped_model/scoped_model.dart';
 import 'package:serview/models/publicUser.dart';
 import 'package:serview/models/user_model.dart';
 import 'package:serview/ui/constructors/builders.dart';
+import 'package:serview/ui/curriculumPage/curriculum_page.dart';
 
 class SearchPage extends StatefulWidget {
   final String str;
@@ -16,7 +17,7 @@ class _SearchPageState extends State<SearchPage> {
   final String search;
 
   _SearchPageState({this.search});
-  final _scaffoldKey = GlobalKey<ScaffoldState>();
+  final _scaffoldKeyy = GlobalKey<ScaffoldState>();
 
   String search1;
   var publicUser = PublicUser();
@@ -33,8 +34,15 @@ class _SearchPageState extends State<SearchPage> {
     }
   }
 
-  getSearchProfessions(){
-    publicUser.loadLimitedPublicUsersByProfession(2, "Programador");
+  getSearchProfessions(String profession) async {
+    publicUser.loadLimitedPublicUsersByProfession(2, profession);
+    await Future.delayed(Duration(seconds: 1));
+    setState(() {
+      this.searchList = publicUser.allUsersByProfession;
+    });
+    if (this.searchList.length == 0) {
+      onError();
+    }
   }
 
   @override
@@ -42,7 +50,7 @@ class _SearchPageState extends State<SearchPage> {
     //Lembrando que "search" é a categoria que essa Page recebe
     if (search == null || search == "") {
       return Scaffold(
-        key: _scaffoldKey,
+          key: _scaffoldKeyy,
           appBar: AppBar(
             title: Text("Pesquisar"),
             centerTitle: true,
@@ -93,9 +101,17 @@ class _SearchPageState extends State<SearchPage> {
             ),
           ));
     } else {
-      getSearchProfessions();
+      if (this.publicUser.allUsersByProfession == null) {
+        getSearchProfessions(search);
+        return Scaffold(
+          key: _scaffoldKeyy,
+          body: Center(
+            child: CircularProgressIndicator(),
+          ),
+        );
+      }
       return Scaffold(
-        key: _scaffoldKey,
+        key: _scaffoldKeyy,
         appBar: AppBar(
           title: Text("Pesquisar"),
           centerTitle: true,
@@ -112,13 +128,27 @@ class _SearchPageState extends State<SearchPage> {
                     child: ListView.builder(
                       scrollDirection: Axis.vertical,
                       shrinkWrap: true,
-                      itemCount: 2,
+                      itemCount: publicUser.allUsersByProfession.length,
                       itemBuilder: (context, index) {
-                        return Builders.publicUserListTile(
-                            name: "aaa",
-                            profession: "aaaaa",
-                            url:
-                                "https://ih1.redbubble.net/image.803781402.0560/stf,small,600x600-pad,750x1000,f8f8f8.u1.jpg");
+                        return GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => CurriculumPage(
+                                        publicUser.allUsersByProfession[index]
+                                            ["email"])));
+                          },
+                          child: Builders.publicUserListTile(
+                              rate: publicUser.allUsersByProfession[index]
+                                  ["curriculum"]["rate"],
+                              name: publicUser.allUsersByProfession[index]
+                                  ["name"],
+                              profession: publicUser.allUsersByProfession[index]
+                                  ["profession"],
+                              url:
+                                  "https://ih1.redbubble.net/image.803781402.0560/stf,small,600x600-pad,750x1000,f8f8f8.u1.jpg"),
+                        );
                       },
                     ),
                   ),
@@ -132,11 +162,10 @@ class _SearchPageState extends State<SearchPage> {
   }
 
   onError() {
-    final snackBar = SnackBar(
-      content:
-          Text('Falha ao encontrar o usuário'),
+    _scaffoldKeyy.currentState.showSnackBar(SnackBar(
+      content: Text('Usuários não encontrados'),
       backgroundColor: Colors.redAccent,
-    );
-    _scaffoldKey.currentState.showSnackBar(snackBar);
+      duration: Duration(seconds: 2),
+    ));
   }
 }

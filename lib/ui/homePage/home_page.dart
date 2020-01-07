@@ -9,6 +9,7 @@ import 'package:serview/ui/favoritePage/favorite_page.dart';
 import 'package:serview/ui/profilePage/profile_page.dart';
 import 'package:serview/ui/signPage/sign_page.dart';
 import 'package:serview/ui/search_page/search_page.dart';
+import 'package:serview/ui/chatPage/chat_page.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -33,33 +34,41 @@ class _HomePageState extends State<HomePage> {
       setState(() {
         this.publicHomeList = publicUser.allUsersByNumFornecedor;
       });
-    } if (this.publicHomeList == null) getHomeList();
+    }
+    if (this.publicHomeList == null) getHomeList();
   }
 
   @override
   Widget build(BuildContext context) {
-    if (this.publicHomeList == null) {
-      getHomeList();
-      return Scaffold(
-        body: Center(
-          child: CircularProgressIndicator(),
-        ),
-      );
-    }
     return ScopedModelDescendant<UserModel>(
       builder: (context, child, model) {
         //Fazer forma de mandar para SignPage quando não logado.
         // model.firebaseUser = null;
         // if (model.firebaseUser == null) {
-        //    Navigator.push(
-        //     context, MaterialPageRoute(builder: (context) => SignPage()));
         // }
+        if (this.publicHomeList == null) {
+          getHomeList();
+          return Scaffold(
+            body: Center(
+              child: CircularProgressIndicator(),
+            ),
+          );
+        }
         return Scaffold(
             appBar: AppBar(
               automaticallyImplyLeading: false,
               title: Text('Serview'),
               backgroundColor: Colors.lightBlue,
               centerTitle: true,
+              leading: IconButton(
+                icon: Icon(Icons.menu),
+                onPressed: (){
+                  Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => CategoriesPage()));
+                },
+              ),
               actions: <Widget>[
                 IconButton(
                   icon: Icon(Icons.favorite),
@@ -78,12 +87,12 @@ class _HomePageState extends State<HomePage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   IconButton(
-                    icon: Icon(Icons.menu),
+                    icon: Icon(Icons.chat),
                     onPressed: () {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => CategoriesPage()));
+                              builder: (context) => ChatPage()));
                     },
                   ),
                   IconButton(

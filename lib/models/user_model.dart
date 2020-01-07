@@ -184,12 +184,12 @@ class UserModel extends Model {
       {Map<String, dynamic> publicUserData,
       VoidCallback onError,
       VoidCallback onSucess}) async {
+    publicUserData["profession"] = publicUserData["curriculum"]["profession"];
     await _savePublicUser(publicUserData).catchError((e) {
       onError();
     });
     userData["fornecedor"] = publicUserData["fornecedor"];
     userCurriculum["profession"] = publicUserData["curriculum"]["profession"];
-    userCurriculum["profession"] = publicUserData["profession"];
     await _saveUserData(userData).catchError((e) {
       onError();
     });

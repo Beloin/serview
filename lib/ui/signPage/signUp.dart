@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:serview/models/professions.dart';
@@ -5,6 +8,7 @@ import 'package:serview/models/user_model.dart';
 import 'package:serview/ui/constructors/builders.dart';
 import 'package:serview/ui/homePage/home_page.dart';
 import 'dart:convert';
+import 'package:image_picker/image_picker.dart';
 
 class SignUpTab extends StatefulWidget {
   @override
@@ -15,6 +19,7 @@ class _SignUpTabState extends State<SignUpTab> {
   final _nameController = TextEditingController();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+  final _numController = TextEditingController();
 
   final _scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -61,7 +66,13 @@ class _SignUpTabState extends State<SignUpTab> {
                           child: Icon(Icons.add_a_photo),
                         )),
                   ),
-                  onTap: () {},
+                  onTap: () async {
+                    //   File imgFile = await ImagePicker.pickImage(source: ImageSource.gallery);
+                    //   if(imgFile == null) return;
+                    //   StorageUploadTask task = FirebaseStorage.instance.ref().child("imgPerfil").putFile(imgFile);
+
+                    // (await task.future).downloadUrl.toString();
+                  },
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -106,7 +117,30 @@ class _SignUpTabState extends State<SignUpTab> {
                     controller: _emailController,
                     colorText: Colors.black,
                     keyboardType: TextInputType.emailAddress,
-                    label: "Digite Aqui Seu Email",
+                    label: "Digite Aqui",
+                  ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    Padding(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: _hPadd, vertical: 5.0),
+                        child: Text(
+                          "Seu Número Celular:",
+                          style: TextStyle(
+                              color: Colors.blueGrey, fontSize: _fontSize),
+                        ))
+                  ],
+                ),
+                Padding(
+                  padding:
+                      EdgeInsets.symmetric(horizontal: _hPadd, vertical: 5.0),
+                  child: Builders.buildFieldText(
+                    controller: _numController,
+                    colorText: Colors.black,
+                    keyboardType: TextInputType.emailAddress,
+                    label: "Digite Aqui",
                   ),
                 ),
                 Row(
@@ -129,7 +163,7 @@ class _SignUpTabState extends State<SignUpTab> {
                     controller: _passwordController,
                     colorText: Colors.black,
                     obscureText: true,
-                    label: "Digite Aqui Sua Senha",
+                    label: "Digite Aqui",
                   ),
                 ),
                 Row(
@@ -151,7 +185,7 @@ class _SignUpTabState extends State<SignUpTab> {
                   child: Builders.buildFieldText(
                     colorText: Colors.black,
                     obscureText: true,
-                    label: "Digite Aqui Sua Senha Novamente",
+                    label: "Digite Aqui",
                   ),
                 ),
                 Padding(
@@ -162,6 +196,7 @@ class _SignUpTabState extends State<SignUpTab> {
                           Map<String, dynamic> userData = {
                             "name": _nameController.text,
                             "email": _emailController.text,
+                            "number": _numController.text,
                             "fornecedor": false,
                           };
                           //Salvo já currículo só para teste, apagar depois
@@ -175,6 +210,7 @@ class _SignUpTabState extends State<SignUpTab> {
                           Map<String, dynamic> publicUser = {
                             "name": _nameController.text,
                             "email": _emailController.text,
+                            "number": _numController.text,
                             "fornecedor": false,
                             'curriculum': userCurriculum,
                             "profession": userCurriculum["profession"]
